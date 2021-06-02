@@ -1,3 +1,6 @@
-[submodule "Sportify/backend/Sportify-UserManagement"]
-	path = Sportify/backend/Sportify-UserManagement
+[submodule "Sportify/Backend/Sportify-UserManagement"]
+	path = Sportify/Backend/Sportify-UserManagement
 	url = https://github.com/mohammedelsisi/Sportify-UserManagement
+[submodule "Sportify/Backend/Sportify-GameDetails"]
+	path = Sportify/Backend/Sportify-GameDetails
+	url = https://github.com/MKSherbini/Sportify-GameDetails
