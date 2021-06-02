@@ -1,0 +1,3 @@
+[submodule "Sportify/backend/Sportify-UserManagement"]
+	path = Sportify/backend/Sportify-UserManagement
+	url = https://github.com/mohammedelsisi/Sportify-UserManagement
