@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  AuthenticateUrl:"http://localhost:9865/authenticate",
+  RegistationUrl:"http://localhost:9090/RestApi-1.0-SNAPSHOT/api/students/",
 };
 
 /*

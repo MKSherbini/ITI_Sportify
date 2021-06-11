@@ -1,0 +1,28 @@
+
+<div class="card" >
+  <div class="card-body">
+      <h5 class="card-title">Login Form</h5>
+      <form [formGroup]="form">
+        <div>
+          <p *ngIf="invalid" class="alert-danger">Please enter a vaild email and password</p>
+        </div>
+
+          <label>User Name</label>
+          <input formControlName="userName" class="form-control" type="text" id="UN01" required>
+          <label>Password</label>
+
+
+          <input formControlName="password" class="form-control" type="password" required>
+
+          <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="cb_01">
+              <label class="form-check-label" >Remember me</label>
+          </div>
+
+
+
+          <input class="btn btn-primary mt-4" type="submit" (click)="login()">
+      </form>
+
+  </div>
+</div>
