@@ -4,3 +4,6 @@
 [submodule "Sportify/Backend/Sportify-GameDetails"]
 	path = Sportify/Backend/Sportify-GameDetails
 	url = https://github.com/MKSherbini/Sportify-GameDetails
+[submodule "Sportify/Backend/Sportify-UserScores"]
+	path = Sportify/Backend/Sportify-UserScores
+	url = https://github.com/mohammedelsisi/Sportify-UserScores
