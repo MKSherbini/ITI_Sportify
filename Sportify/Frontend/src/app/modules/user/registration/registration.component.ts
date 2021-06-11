@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Login } from 'src/app/models/login';
-import { RegistrationDto } from 'src/app/models/MatchPrediction';
+import { RegistrationDto } from 'src/app/models/RegistrationDto';
 import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({

@@ -1,5 +1,5 @@
 export class MatchSelectionDto {
   userEmail:string;
-  matchId:string;
-  selectedTeamId:string;
+  matchId:number;
+  selectedTeamId:number;
 }
