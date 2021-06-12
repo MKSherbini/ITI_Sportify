@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeadComponent } from './head/head.component';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     HeaderComponent,
     LayoutComponent,
-    FooterComponent
+    FooterComponent,
+    HeadComponent
   ],
   imports: [
     CommonModule, RouterModule,HttpClientModule,ReactiveFormsModule,FormsModule

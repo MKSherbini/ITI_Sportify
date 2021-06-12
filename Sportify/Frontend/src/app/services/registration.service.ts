@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { RegistrationDto } from '../models/MatchPrediction';
+import { RegistrationDto } from '../models/RegistrationDto';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +14,5 @@ export class RegistrationService {
   registerUser(obj:RegistrationDto){
      return this._http.post(this.registrationUrl,obj);
   }
-  
+
 }
