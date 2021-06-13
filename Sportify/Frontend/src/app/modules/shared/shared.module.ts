@@ -25,7 +25,9 @@ import { HeadComponent } from './head/head.component';
     HeaderComponent,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    FooterComponent,
+    HeadComponent
   ]
 })
 export class SharedModule { }

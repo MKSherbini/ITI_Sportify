@@ -29,7 +29,14 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/vendor/fontawesome-free/js/all.js",
+              "src/assets/vendor/bootstrap-slider/dist/bootstrap-slider.min.js",
+              "src/assets/js/goodgames.js",
+              "src/assets/vendor/jquery/dist/jquery.min.js",
+              "src/assets/vendor/photoswipe/dist/photoswipe.min.js",
+              "src/assets/vendor/photoswipe/dist/photoswipe-ui-default.min.js"
+            ]
           },
           "configurations": {
             "production": {
