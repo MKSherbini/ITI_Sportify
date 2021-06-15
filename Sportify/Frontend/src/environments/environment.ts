@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   AuthenticateUrl:"http://localhost:9865/authenticate",
   RegistationUrl:"http://localhost:9090/RestApi-1.0-SNAPSHOT/api/students/",
+  LatestMatchesUrl: "http://localhost:9090/matches"
 };
 
 /*

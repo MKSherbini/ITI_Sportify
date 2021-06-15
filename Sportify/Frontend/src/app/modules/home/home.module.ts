@@ -7,11 +7,12 @@ import { NavComponent } from './nav/nav.component';
 import { HomeLayoutComponent } from './home-layout/home-layout.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { MatchesModule } from '../matches/matches.module';
 
 
 const routes: Routes = [
   {path:'second',component:SecondPageComponent,canActivate:[AuthGuard]},
-  {path:"",component:WelcomeComponent}
+  {path:"",component:HomeLayoutComponent}
 
 ]
 @NgModule({
@@ -23,7 +24,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    MatchesModule
   ],
   bootstrap: [HomeLayoutComponent]
 
