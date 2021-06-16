@@ -123,7 +123,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -184,7 +184,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<CollectionModelOfGame>(`${this.configuration.basePath}/api/games`,
+        return this.httpClient.get<CollectionModelOfGame>(`${this.configuration.basePath}/api/gamesDb`,
             {
                 params: queryParameters,
                 responseType: <any>responseType_,
@@ -230,7 +230,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<EntityModelOfGame>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}`,
+        return this.httpClient.get<EntityModelOfGame>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -278,7 +278,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/matches/${encodeURIComponent(String(matchId))}`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/matches/${encodeURIComponent(String(matchId))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -322,7 +322,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/matches`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/matches`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -367,7 +367,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<CollectionModelOfMatch>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/matches`,
+        return this.httpClient.get<CollectionModelOfMatch>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/matches`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -416,7 +416,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<EntityModelOfMatch>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/matches/${encodeURIComponent(String(matchId))}`,
+        return this.httpClient.get<EntityModelOfMatch>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/matches/${encodeURIComponent(String(matchId))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -473,7 +473,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.patch<CollectionModelOfMatch>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/matches`,
+        return this.httpClient.patch<CollectionModelOfMatch>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/matches`,
             requestBody,
             {
                 responseType: <any>responseType_,
@@ -531,7 +531,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<CollectionModelOfMatch>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/matches`,
+        return this.httpClient.post<CollectionModelOfMatch>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/matches`,
             requestBody,
             {
                 responseType: <any>responseType_,
@@ -589,7 +589,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.put<CollectionModelOfMatch>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/matches`,
+        return this.httpClient.put<CollectionModelOfMatch>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/matches`,
             requestBody,
             {
                 responseType: <any>responseType_,
@@ -638,7 +638,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/news/${encodeURIComponent(String(newsId))}`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/news/${encodeURIComponent(String(newsId))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -682,7 +682,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/news`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/news`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -727,7 +727,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<CollectionModelOfNews>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/news`,
+        return this.httpClient.get<CollectionModelOfNews>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/news`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -776,7 +776,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<EntityModelOfNews>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/news/${encodeURIComponent(String(newsId))}`,
+        return this.httpClient.get<EntityModelOfNews>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/news/${encodeURIComponent(String(newsId))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -833,7 +833,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.patch<CollectionModelOfNews>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/news`,
+        return this.httpClient.patch<CollectionModelOfNews>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/news`,
             requestBody,
             {
                 responseType: <any>responseType_,
@@ -891,7 +891,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<CollectionModelOfNews>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/news`,
+        return this.httpClient.post<CollectionModelOfNews>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/news`,
             requestBody,
             {
                 responseType: <any>responseType_,
@@ -949,7 +949,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.put<CollectionModelOfNews>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}/news`,
+        return this.httpClient.put<CollectionModelOfNews>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}/news`,
             requestBody,
             {
                 responseType: <any>responseType_,
@@ -1005,7 +1005,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.patch<EntityModelOfGame>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}`,
+        return this.httpClient.patch<EntityModelOfGame>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}`,
             game,
             {
                 responseType: <any>responseType_,
@@ -1057,7 +1057,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<EntityModelOfGame>(`${this.configuration.basePath}/api/games`,
+        return this.httpClient.post<EntityModelOfGame>(`${this.configuration.basePath}/api/gamesDb`,
             game,
             {
                 responseType: <any>responseType_,
@@ -1113,7 +1113,7 @@ export class GameEntityService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.put<EntityModelOfGame>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(id))}`,
+        return this.httpClient.put<EntityModelOfGame>(`${this.configuration.basePath}/api/gamesDb/${encodeURIComponent(String(id))}`,
             game,
             {
                 responseType: <any>responseType_,

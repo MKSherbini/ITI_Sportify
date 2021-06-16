@@ -3,8 +3,8 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 import { BasicErrorControllerService } from './api/basicErrorController.service';
-import { GameDetailsControllerService } from './api/gameDetailsController.service';
 import { GameEntityService } from './api/gameEntity.service';
+import { GamesControllerService } from './api/gamesController.service';
 import { MatchEntityService } from './api/matchEntity.service';
 import { NewsEntityService } from './api/newsEntity.service';
 import { ProfileControllerService } from './api/profileController.service';

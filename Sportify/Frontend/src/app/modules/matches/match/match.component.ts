@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatchDto } from 'src/app/models/MatchDto';
+import { MatchDto } from 'src/app/openapi';
 
 @Component({
   selector: 'app-match',
@@ -9,17 +9,19 @@ import { MatchDto } from 'src/app/models/MatchDto';
 export class MatchComponent implements OnInit {
 
   @Input("match")
-  match:MatchDto;
+  match: MatchDto;
 
   constructor() { }
 
   ngOnInit(): void {
     this.checkRequiredFields(this.match);
+    console.log(this.match);
+
   }
 
   checkRequiredFields(input) {
-    if(input === null) {
-       throw new Error("Match is required");
+    if (input === null) {
+      throw new Error("Match is required");
     }
- }
+  }
 }

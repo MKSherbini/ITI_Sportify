@@ -1,9 +1,9 @@
 export * from './basicErrorController.service';
 import { BasicErrorControllerService } from './basicErrorController.service';
-export * from './gameDetailsController.service';
-import { GameDetailsControllerService } from './gameDetailsController.service';
 export * from './gameEntity.service';
 import { GameEntityService } from './gameEntity.service';
+export * from './gamesController.service';
+import { GamesControllerService } from './gamesController.service';
 export * from './matchEntity.service';
 import { MatchEntityService } from './matchEntity.service';
 export * from './newsEntity.service';
@@ -16,4 +16,4 @@ export * from './teamEntity.service';
 import { TeamEntityService } from './teamEntity.service';
 export * from './teamMatchScoreEntity.service';
 import { TeamMatchScoreEntityService } from './teamMatchScoreEntity.service';
-export const APIS = [BasicErrorControllerService, GameDetailsControllerService, GameEntityService, MatchEntityService, NewsEntityService, ProfileControllerService, PublishTestService, TeamEntityService, TeamMatchScoreEntityService];
+export const APIS = [BasicErrorControllerService, GameEntityService, GamesControllerService, MatchEntityService, NewsEntityService, ProfileControllerService, PublishTestService, TeamEntityService, TeamMatchScoreEntityService];

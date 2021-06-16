@@ -19,6 +19,6 @@ export interface EmbeddedCollectionOfGame {
     /**
      * Resource collection
      */
-    games: Array<Game>;
+    gamesDb: Array<Game>;
 }
 

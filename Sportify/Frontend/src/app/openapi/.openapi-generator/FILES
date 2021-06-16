@@ -3,8 +3,8 @@ README.md
 api.module.ts
 api/api.ts
 api/basicErrorController.service.ts
-api/gameDetailsController.service.ts
 api/gameEntity.service.ts
+api/gamesController.service.ts
 api/matchEntity.service.ts
 api/newsEntity.service.ts
 api/profileController.service.ts
@@ -31,13 +31,13 @@ model/entityModelOfNews.ts
 model/entityModelOfTeam.ts
 model/entityModelOfTeamMatchScore.ts
 model/game.ts
-model/gameDetailsDto.ts
+model/gameDto.ts
 model/link.ts
 model/links.ts
 model/match.ts
+model/matchDto.ts
 model/matchReq.ts
 model/matchRes.ts
-model/matchesDto.ts
 model/modelAndView.ts
 model/models.ts
 model/news.ts
