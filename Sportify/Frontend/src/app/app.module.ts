@@ -4,12 +4,11 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './modules/shared/shared.module';
-import { NewsComponent } from './modules/news/news.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NewsComponent
+    AppComponent
+
   ],
   imports: [
     BrowserModule,
