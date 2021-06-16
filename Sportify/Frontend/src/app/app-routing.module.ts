@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { HeaderComponent } from './modules/shared/header/header.component';
 import { LayoutComponent } from './modules/shared/layout/layout.component';
+import {NewsComponent} from "./modules/news/news.component";
 
 const routes: Routes = [
   {path:'user',
@@ -13,6 +14,10 @@ const routes: Routes = [
   {path:'',
   component:LayoutComponent,
   loadChildren: () => import('../app/modules/home/home.module').then(m => m.HomeModule)
+  },
+
+  {path:'news',
+    component:NewsComponent
   },
 ];
 
