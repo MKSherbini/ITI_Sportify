@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NewsService } from 'src/app/services/news.service';
 import { Game, GamesControllerService, NewsDto } from 'src/app/openapi';
@@ -8,6 +8,8 @@ import { Game, GamesControllerService, NewsDto } from 'src/app/openapi';
   styleUrls: ['./gamenews.component.css']
 })
 export class GamenewsComponent implements OnInit {
+
+  
   allNews: NewsDto[];
 
   constructor(private gamesService: GamesControllerService) { }
@@ -15,6 +17,7 @@ export class GamenewsComponent implements OnInit {
   ngOnInit(): void {
     this.gamesService.getGameNewsUsingGET(Game.CodeNameEnum.Lol).subscribe(gamenews =>{
       console.log(gamenews.length);
+      this.allNews = gamenews;
     })
   }
 
