@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatchDto } from 'src/app/models/MatchDto';
+import { Game, GamesControllerService, MatchDto } from 'src/app/openapi';
 
 @Component({
   selector: 'app-matches-list',
@@ -8,11 +8,17 @@ import { MatchDto } from 'src/app/models/MatchDto';
 })
 export class MatchesListComponent implements OnInit {
 
-  latestMatches:MatchDto[];
+  latestMatches: MatchDto[];
 
-  constructor() { }
+  constructor(private gamesService: GamesControllerService) { }
 
   ngOnInit(): void {
+    console.log("MatchesListComponent");
+    this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Dota2).subscribe(ret => {
+      console.log(ret.length);
+      console.log(ret[0].name);
+      this.latestMatches = ret;
+    })
   }
 
 }
