@@ -21,4 +21,29 @@ export class GamenewsComponent implements OnInit {
     })
   }
 
+  getLolNews(){
+    this.gamesService.getGameNewsUsingGET(Game.CodeNameEnum.Lol).subscribe(gamenews =>{
+      console.log(gamenews.length);
+      this.allNews = gamenews;
+    })
+  }
+
+  getValorantNews(){
+    this.gamesService.getGameNewsUsingGET(Game.CodeNameEnum.Valorant).subscribe(gamenews =>{
+      this.allNews = gamenews;
+    })
+  }
+
+  getDota2News(){
+    this.gamesService.getGameNewsUsingGET(Game.CodeNameEnum.Dota2).subscribe(gamenews =>{
+      this.allNews = gamenews;
+    })
+  }
+
+  getCodmwNews(){
+    this.gamesService.getGameNewsUsingGET(Game.CodeNameEnum.Codmw).subscribe(gamenews =>{
+      this.allNews = gamenews;
+    })
+  }
+
 }
