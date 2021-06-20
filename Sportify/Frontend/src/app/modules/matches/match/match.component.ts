@@ -16,7 +16,6 @@ export class MatchComponent implements OnInit {
   ngOnInit(): void {
     this.checkRequiredFields(this.match);
     console.log(this.match);
-
   }
 
   checkRequiredFields(input) {

@@ -14,7 +14,7 @@ export class MatchesListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("MatchesListComponent");
-    this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Dota2).subscribe(ret => {
+    this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Lol).subscribe(ret => {
       console.log(ret.length);
       console.log(ret[0].name);
       this.latestMatches = ret;

@@ -11,6 +11,7 @@ import { ProfileControllerService } from './api/profileController.service';
 import { PublishTestService } from './api/publishTest.service';
 import { TeamEntityService } from './api/teamEntity.service';
 import { TeamMatchScoreEntityService } from './api/teamMatchScoreEntity.service';
+import { TeamMemberEntityService } from './api/teamMemberEntity.service';
 
 @NgModule({
   imports:      [],

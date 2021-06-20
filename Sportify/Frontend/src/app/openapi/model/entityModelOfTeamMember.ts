@@ -10,15 +10,18 @@
  * Do not edit the class manually.
  */
 import { Links } from './links';
-import { TeamMember } from './teamMember';
 
 
-export interface EntityModelOfTeam { 
-    acronym?: string;
+export interface EntityModelOfTeamMember { 
+    birthYear?: string;
+    birthday?: string;
+    firstName?: string;
+    hometown?: string;
     id?: number;
     imageUrl?: string;
+    lastName?: string;
     links?: Links;
     name?: string;
-    teamMembers?: Array<TeamMember>;
+    nationality?: string;
 }
 

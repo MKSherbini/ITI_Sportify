@@ -16,4 +16,6 @@ export * from './teamEntity.service';
 import { TeamEntityService } from './teamEntity.service';
 export * from './teamMatchScoreEntity.service';
 import { TeamMatchScoreEntityService } from './teamMatchScoreEntity.service';
-export const APIS = [BasicErrorControllerService, GameEntityService, GamesControllerService, MatchEntityService, NewsEntityService, ProfileControllerService, PublishTestService, TeamEntityService, TeamMatchScoreEntityService];
+export * from './teamMemberEntity.service';
+import { TeamMemberEntityService } from './teamMemberEntity.service';
+export const APIS = [BasicErrorControllerService, GameEntityService, GamesControllerService, MatchEntityService, NewsEntityService, ProfileControllerService, PublishTestService, TeamEntityService, TeamMatchScoreEntityService, TeamMemberEntityService];

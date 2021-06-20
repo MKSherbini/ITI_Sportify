@@ -9,16 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Links } from './links';
-import { TeamMember } from './teamMember';
 
 
-export interface EntityModelOfTeam { 
-    acronym?: string;
-    id?: number;
+export interface TeamMemberDto { 
+    birthYear?: string;
+    birthday?: string;
+    firstName?: string;
+    hometown?: string;
     imageUrl?: string;
-    links?: Links;
+    lastName?: string;
     name?: string;
-    teamMembers?: Array<TeamMember>;
+    nationality?: string;
 }
 
