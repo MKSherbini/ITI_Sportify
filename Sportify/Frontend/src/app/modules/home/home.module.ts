@@ -13,7 +13,7 @@ import { GamenewsComponent } from './gamenews/gamenews.component';
 const routes: Routes = [
   {path:'second',component:SecondPageComponent,canActivate:[AuthGuard]},
   {path:"news",component:GamenewsComponent},
-  {path:"",component:HomeLayoutComponent}
+  {path:"",component:WelcomeComponent}
 
 ]
 @NgModule({

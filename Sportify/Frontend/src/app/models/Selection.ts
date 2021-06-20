@@ -1,0 +1,3 @@
+export enum Selection {
+  TEAM01_SELECTED,TEAM02_SELECTED,NOTSELECTED
+}

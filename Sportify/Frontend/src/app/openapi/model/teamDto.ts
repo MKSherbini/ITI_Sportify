@@ -13,6 +13,7 @@
 
 export interface TeamDto { 
     acronym?: string;
+    id?: number;
     name?: string;
 }
 
