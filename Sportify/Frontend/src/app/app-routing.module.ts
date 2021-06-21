@@ -23,9 +23,9 @@ const routes: Routes = [
     // ,  canActivate:[AuthGuard]
   },
   {
-    path: 'article',
+    path: 'news',
     component: LayoutComponent,
-    loadChildren: () => import('../app/modules/news-details/news-details.module').then(m => m.NewsDetailsModule)
+    loadChildren: () => import('../app/modules/news/news.module').then(m => m.NewsModule)
     // ,  canActivate:[AuthGuard]
   },
 ];

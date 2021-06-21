@@ -7,12 +7,10 @@ import { NavComponent } from './nav/nav.component';
 import { HomeLayoutComponent } from './home-layout/home-layout.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
-import { GamenewsComponent } from './gamenews/gamenews.component';
 
 
 const routes: Routes = [
   {path:'second',component:SecondPageComponent,canActivate:[AuthGuard]},
-  {path:"news",component:GamenewsComponent},
   {path:"",component:WelcomeComponent}
 
 ]
@@ -22,7 +20,6 @@ const routes: Routes = [
     NavComponent,
     HomeLayoutComponent,
     SecondPageComponent,
-    GamenewsComponent
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes),
