@@ -1,39 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthenticationResponse } from 'src/app/models/AuthenticationResponse';
-import { Login } from 'src/app/models/login';
-import { LoginService } from 'src/app/services/login.service';
-import { environment } from 'src/environments/environment';
-
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router, Routes} from '@angular/router';
+import {Spacevalidator} from '../../../models/spacevalidator';
+import {AuthenticationService} from '../../../services/authentication.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form:FormGroup;
-  invalid:boolean=false;
-  constructor(private loginService:LoginService,private formBuilder:FormBuilder,private _router:Router) { }
+
+  logInFormGroup: FormGroup;
+  invalidMessage: string;
+
+  constructor(private formBuilder: FormBuilder,
+              // private loginService: LoginService,
+              private auth: AuthenticationService,
+              private route: Router) { }
 
   ngOnInit(): void {
-    this.form=this.formBuilder.group({
-      userName:["",[Validators.required]],
-      password:["",[Validators.required]]
-    })
-  }
-  login(){
-    let log:Login=this.form.value;
-    console.log(log)
-      this.loginService.login(log).subscribe(re=>{
-        let response:AuthenticationResponse = re as AuthenticationResponse;
-        this.loginService.logged=true;
-        this.loginService.addToken(response.jwt);
-        this._router.navigateByUrl("/second")
-
-      },
-      error=>{
-            this.invalid=true;
+    this.logInFormGroup = this.formBuilder.group({
+      admin: this.formBuilder.group({
+        userName: new FormControl('', [Validators.required, Validators.minLength(5), Spacevalidator.noOnlyWithSpace]),
+        password: new FormControl('', [Validators.required, Validators.minLength(5)])
       })
+    });
+  }
+
+  get userName(){
+    return this.logInFormGroup.get('admin.userName')
+  }
+  get password(){
+    return this.logInFormGroup.get('admin.password')
+  }
+  OnSubmit() {
+    if (this.logInFormGroup.invalid){
+      this.logInFormGroup.markAllAsTouched();
+    } else {
+      this.auth.executeAuthentication(this.logInFormGroup.get('admin').value.userName, this.logInFormGroup.get('admin').value.password)
+        .subscribe(
+          data => {
+            this.route.navigateByUrl('home');
+          }, error => {
+            this.invalidMessage = 'Invalid UserName and Password';
+            this.showMessage();
+          }
+        );
+    }
+  }
+  showMessage(){
+    setTimeout(() => {
+      this.invalidMessage = '';
+    }, 3000);
   }
 }
+
+

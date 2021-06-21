@@ -1,28 +1,27 @@
+<form [formGroup]="logInFormGroup" (ngSubmit)="OnSubmit()">
+  <div *ngIf="invalidMessage" class="alert alert-danger">{{invalidMessage}}</div>
+  <div formGroupName="admin">
+    <div class="input-group flex-nowrap ipu">
+      <div class="input-group-prepend">
+      </div>
+      <input formControlName="userName" type="text" class="form-control" placeholder="userName" aria-label="userName" aria-describedby="addon-wrapping">
+    </div>
+    <div class="inv"  *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+      <div *ngIf="userName.errors.required || userName.errors.noOnlyWithSpace" class="alert alert-danger">UserName required</div>
+      <div *ngIf="!userName.errors.noOnlyWithSpace && userName.errors.minlength" class="alert alert-danger">UserName must be more than 5 digts</div>
+    </div>
 
-<div class="card" >
-  <div class="card-body">
-      <h5 class="card-title">Login Form</h5>
-      <form [formGroup]="form">
-        <div>
-          <p *ngIf="invalid" class="alert-danger">Please enter a vaild email and password</p>
-        </div>
-
-          <label>User Name</label>
-          <input formControlName="userName" class="form-control" type="text" id="UN01" required>
-          <label>Password</label>
-
-
-          <input formControlName="password" class="form-control" type="password" required>
-
-          <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="cb_01">
-              <label class="form-check-label" >Remember me</label>
-          </div>
-
-
-
-          <input class="btn btn-primary mt-4" type="submit" (click)="login()">
-      </form>
-
+    <div class="input-group flex-nowrap ipu">
+      <div class="input-group-prepend">
+      </div>
+      <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
+    </div>
+    <div class="inv" *ngIf="password.invalid  && (password.dirty || password.touched)">
+      <div *ngIf="password.errors.required" class="alert alert-danger">Password required</div>
+      <div *ngIf="password.errors.minlength" class="alert alert-danger">Password must be more than 5 digts</div>
+    </div>
   </div>
-</div>
+  <div>
+    <button class="btn btn-primary"> Log In </button>
+  </div>
+</form>
