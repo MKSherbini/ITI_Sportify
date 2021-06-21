@@ -1,0 +1,38 @@
+
+<div class="nk-match">
+  <div class="nk-match-team-left">
+    <a href="#">
+      <span class="nk-match-team-logo">
+        <img src="assets/images/team-1.jpg" alt="">
+      </span>
+      <span class="nk-match-team-name">
+        {{match.teams[0].team.name}} ({{match.teams[0].team.acronym}})
+      </span>
+    </a>
+  </div>
+  <div class="nk-match-status">
+    <a href="#">
+      <span class="nk-match-status-vs">VS</span>
+      <span class="nk-match-status-date">
+        {{match.scheduledAt | date:'medium'}}
+      </span>
+    </a>
+    <br>
+    <app-prediction-slider (eventEmiitter)="onChange($event)" [team01]="match.teams[0]" [team02]="match.teams[1]"></app-prediction-slider>
+
+    <button [disabled]="!selected" class="nk-match-score" (click)="sendPrediction()" >Submit</button>
+
+  </div>
+  <div class="nk-match-team-right">
+    <a href="#">
+      <span class="nk-match-team-name">
+        {{match.teams[1].team.name}} ({{match.teams[1].team.acronym}})
+      </span>
+      <span class="nk-match-team-logo">
+        <img src="assets/images/team-2.jpg" alt="">
+      </span>
+    </a>
+  </div>
+</div>
+<div class="nk-gap-2"></div>
+

@@ -17,11 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { GameDto } from '../model/models';
-import { MatchDto } from '../model/models';
-import { NewsDetailsDto } from '../model/models';
-import { NewsDto } from '../model/models';
-import { TeamDto } from '../model/models';
+import { ModelAndView } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -31,9 +27,9 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class GamesControllerService {
+export class BasicErrorControllerService {
 
-    protected basePath = 'http://localhost:9899';
+    protected basePath = 'http://localhost:9866';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -89,14 +85,14 @@ export class GamesControllerService {
     }
 
     /**
-     * getDetails
+     * errorHtml
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getDetailsUsingGET(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<Array<GameDto>>;
-    public getDetailsUsingGET(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<Array<GameDto>>>;
-    public getDetailsUsingGET(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<Array<GameDto>>>;
-    public getDetailsUsingGET(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
+    public errorHtmlUsingDELETE(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<ModelAndView>;
+    public errorHtmlUsingDELETE(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpResponse<ModelAndView>>;
+    public errorHtmlUsingDELETE(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpEvent<ModelAndView>>;
+    public errorHtmlUsingDELETE(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/html'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -104,7 +100,7 @@ export class GamesControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'text/html'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -118,7 +114,7 @@ export class GamesControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<GameDto>>(`${this.configuration.basePath}/api/games`,
+        return this.httpClient.delete<ModelAndView>(`${this.configuration.basePath}/error`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -130,18 +126,14 @@ export class GamesControllerService {
     }
 
     /**
-     * getGameDetails
-     * @param game game
+     * errorHtml
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGameDetailsUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<GameDto>;
-    public getGameDetailsUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<GameDto>>;
-    public getGameDetailsUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<GameDto>>;
-    public getGameDetailsUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
-        if (game === null || game === undefined) {
-            throw new Error('Required parameter game was null or undefined when calling getGameDetailsUsingGET.');
-        }
+    public errorHtmlUsingGET(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<ModelAndView>;
+    public errorHtmlUsingGET(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpResponse<ModelAndView>>;
+    public errorHtmlUsingGET(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpEvent<ModelAndView>>;
+    public errorHtmlUsingGET(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/html'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -149,7 +141,7 @@ export class GamesControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'text/html'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -163,7 +155,7 @@ export class GamesControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<GameDto>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(game))}`,
+        return this.httpClient.get<ModelAndView>(`${this.configuration.basePath}/error`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -175,18 +167,14 @@ export class GamesControllerService {
     }
 
     /**
-     * getGameMatches
-     * @param game game
+     * errorHtml
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGameMatchesUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<Array<MatchDto>>;
-    public getGameMatchesUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<Array<MatchDto>>>;
-    public getGameMatchesUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<Array<MatchDto>>>;
-    public getGameMatchesUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
-        if (game === null || game === undefined) {
-            throw new Error('Required parameter game was null or undefined when calling getGameMatchesUsingGET.');
-        }
+    public errorHtmlUsingHEAD(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<ModelAndView>;
+    public errorHtmlUsingHEAD(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpResponse<ModelAndView>>;
+    public errorHtmlUsingHEAD(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpEvent<ModelAndView>>;
+    public errorHtmlUsingHEAD(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/html'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -194,7 +182,7 @@ export class GamesControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'text/html'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -208,7 +196,7 @@ export class GamesControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<MatchDto>>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(game))}/matches`,
+        return this.httpClient.head<ModelAndView>(`${this.configuration.basePath}/error`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -220,18 +208,14 @@ export class GamesControllerService {
     }
 
     /**
-     * getGameNews
-     * @param game game
+     * errorHtml
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGameNewsUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<Array<NewsDto>>;
-    public getGameNewsUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<Array<NewsDto>>>;
-    public getGameNewsUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<Array<NewsDto>>>;
-    public getGameNewsUsingGET(game: 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT', observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
-        if (game === null || game === undefined) {
-            throw new Error('Required parameter game was null or undefined when calling getGameNewsUsingGET.');
-        }
+    public errorHtmlUsingOPTIONS(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<ModelAndView>;
+    public errorHtmlUsingOPTIONS(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpResponse<ModelAndView>>;
+    public errorHtmlUsingOPTIONS(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpEvent<ModelAndView>>;
+    public errorHtmlUsingOPTIONS(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/html'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -239,7 +223,7 @@ export class GamesControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'text/html'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -253,7 +237,7 @@ export class GamesControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<NewsDto>>(`${this.configuration.basePath}/api/games/${encodeURIComponent(String(game))}/news`,
+        return this.httpClient.options<ModelAndView>(`${this.configuration.basePath}/error`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -265,18 +249,14 @@ export class GamesControllerService {
     }
 
     /**
-     * getMatch
-     * @param matchId matchId
+     * errorHtml
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMatchUsingGET(matchId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<MatchDto>;
-    public getMatchUsingGET(matchId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<MatchDto>>;
-    public getMatchUsingGET(matchId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<MatchDto>>;
-    public getMatchUsingGET(matchId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
-        if (matchId === null || matchId === undefined) {
-            throw new Error('Required parameter matchId was null or undefined when calling getMatchUsingGET.');
-        }
+    public errorHtmlUsingPATCH(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<ModelAndView>;
+    public errorHtmlUsingPATCH(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpResponse<ModelAndView>>;
+    public errorHtmlUsingPATCH(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpEvent<ModelAndView>>;
+    public errorHtmlUsingPATCH(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/html'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -284,7 +264,7 @@ export class GamesControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'text/html'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -298,7 +278,8 @@ export class GamesControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<MatchDto>(`${this.configuration.basePath}/api/games/matches/${encodeURIComponent(String(matchId))}`,
+        return this.httpClient.patch<ModelAndView>(`${this.configuration.basePath}/error`,
+            null,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -310,14 +291,14 @@ export class GamesControllerService {
     }
 
     /**
-     * getMatches
+     * errorHtml
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMatchesUsingGET(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<Array<MatchDto>>;
-    public getMatchesUsingGET(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<Array<MatchDto>>>;
-    public getMatchesUsingGET(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<Array<MatchDto>>>;
-    public getMatchesUsingGET(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
+    public errorHtmlUsingPOST(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<ModelAndView>;
+    public errorHtmlUsingPOST(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpResponse<ModelAndView>>;
+    public errorHtmlUsingPOST(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpEvent<ModelAndView>>;
+    public errorHtmlUsingPOST(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/html'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -325,7 +306,7 @@ export class GamesControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'text/html'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -339,7 +320,8 @@ export class GamesControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<MatchDto>>(`${this.configuration.basePath}/api/games/matches`,
+        return this.httpClient.post<ModelAndView>(`${this.configuration.basePath}/error`,
+            null,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -351,20 +333,14 @@ export class GamesControllerService {
     }
 
     /**
-     * getNews
-     * @param newsId newsId
+     * errorHtml
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-
-    public getNewsUsingGET(newsId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<NewsDetailsDto>;
-    public getNewsUsingGET(newsId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<NewsDetailsDto>>;
-    public getNewsUsingGET(newsId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<NewsDetailsDto>>;
-
-    public getNewsUsingGET(newsId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
-        if (newsId === null || newsId === undefined) {
-            throw new Error('Required parameter newsId was null or undefined when calling getNewsUsingGET.');
-        }
+    public errorHtmlUsingPUT(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<ModelAndView>;
+    public errorHtmlUsingPUT(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpResponse<ModelAndView>>;
+    public errorHtmlUsingPUT(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/html'}): Observable<HttpEvent<ModelAndView>>;
+    public errorHtmlUsingPUT(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/html'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -372,7 +348,7 @@ export class GamesControllerService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'text/html'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -386,9 +362,8 @@ export class GamesControllerService {
             responseType_ = 'text';
         }
 
-
-        return this.httpClient.get<NewsDetailsDto>(`${this.configuration.basePath}/api/games/news/${encodeURIComponent(String(newsId))}`,
-
+        return this.httpClient.put<ModelAndView>(`${this.configuration.basePath}/error`,
+            null,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -399,90 +374,5 @@ export class GamesControllerService {
         );
     }
 
-    /**
-     * getNews
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getNewsUsingGET1(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<Array<NewsDto>>;
-    public getNewsUsingGET1(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<Array<NewsDto>>>;
-    public getNewsUsingGET1(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<Array<NewsDto>>>;
-    public getNewsUsingGET1(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                '*/*'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.get<Array<NewsDto>>(`${this.configuration.basePath}/api/games/news`,
-            {
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * getTeam
-     * @param teamId teamId
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getTeamUsingGET(teamId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<TeamDto>;
-    public getTeamUsingGET(teamId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<TeamDto>>;
-    public getTeamUsingGET(teamId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<TeamDto>>;
-    public getTeamUsingGET(teamId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
-        if (teamId === null || teamId === undefined) {
-            throw new Error('Required parameter teamId was null or undefined when calling getTeamUsingGET.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                '*/*'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.get<TeamDto>(`${this.configuration.basePath}/api/games/teams/${encodeURIComponent(String(teamId))}`,
-            {
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
+    
 }

@@ -8,12 +8,14 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "generate:api": "openapi-generator-cli generate -g typescript-angular -i http://localhost:9899/api/v3/api-docs -o ./src/app/openapi",
+    "generate:api": "openapi-generator-cli generate -g typescript-angular -i http://localhost:9866/v3/api-docs -o ./src/app/userScoresOpenApi",
+    "generate:gamedetailsapi": "openapi-generator-cli generate -g typescript-angular -i http://localhost:9899/api/v3/api-docs -o ./src/app/openapi",
     "prestart": "npm run generate:api",
     "prebuild": "npm run generate:api"
   },
   "private": true,
   "dependencies": {
+    "@angular-slider/ngx-slider": "^2.0.3",
     "@angular/animations": "~11.2.8",
     "@angular/common": "~11.2.8",
     "@angular/compiler": "~11.2.8",
