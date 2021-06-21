@@ -10,7 +10,6 @@ export class MatchComponent implements OnInit {
 
   @Input("match")
   match: MatchDto;
-
   constructor() { }
 
   ngOnInit(): void {
@@ -22,5 +21,8 @@ export class MatchComponent implements OnInit {
     if (input === null) {
       throw new Error("Match is required");
     }
+  }
+  isStartedMatch():boolean{
+     return this.match.status!=MatchDto.StatusEnum.NotStarted;
   }
 }

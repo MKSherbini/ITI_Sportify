@@ -7,6 +7,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeadComponent } from './head/head.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 
@@ -19,7 +20,7 @@ import { HeadComponent } from './head/head.component';
     HeadComponent
   ],
   imports: [
-    CommonModule, RouterModule,HttpClientModule,ReactiveFormsModule,FormsModule
+    CommonModule, RouterModule,HttpClientModule,ReactiveFormsModule,FormsModule,MatButtonToggleModule
   ],
   exports:[
     HeaderComponent,
@@ -27,7 +28,8 @@ import { HeadComponent } from './head/head.component';
     ReactiveFormsModule,
     FormsModule,
     FooterComponent,
-    HeadComponent
+    HeadComponent,
+    MatButtonToggleModule
   ]
 })
 export class SharedModule { }

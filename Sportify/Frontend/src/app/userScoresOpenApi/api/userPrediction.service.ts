@@ -86,6 +86,58 @@ export class UserPredictionService {
     }
 
     /**
+     * checkSelected
+     * @param matchSelectionDto 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public checkSelectedUsingPOST(matchSelectionDto?: MatchSelectionDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<object>;
+    public checkSelectedUsingPOST(matchSelectionDto?: MatchSelectionDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<object>>;
+    public checkSelectedUsingPOST(matchSelectionDto?: MatchSelectionDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<object>>;
+    public checkSelectedUsingPOST(matchSelectionDto?: MatchSelectionDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                '*/*'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.post<object>(`${this.configuration.basePath}/predictions/check`,
+            matchSelectionDto,
+            {
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * getAllSelection
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -132,9 +184,9 @@ export class UserPredictionService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSelectionUsingGET(id: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<MatchSelection>;
-    public getSelectionUsingGET(id: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<MatchSelection>>;
-    public getSelectionUsingGET(id: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<MatchSelection>>;
+    public getSelectionUsingGET(id: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<MatchSelectionDto>;
+    public getSelectionUsingGET(id: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<MatchSelectionDto>>;
+    public getSelectionUsingGET(id: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<MatchSelectionDto>>;
     public getSelectionUsingGET(id: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getSelectionUsingGET.');
@@ -160,7 +212,7 @@ export class UserPredictionService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<MatchSelection>(`${this.configuration.basePath}/predictions/${encodeURIComponent(String(id))}`,
+        return this.httpClient.get<MatchSelectionDto>(`${this.configuration.basePath}/predictions/${encodeURIComponent(String(id))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -172,15 +224,15 @@ export class UserPredictionService {
     }
 
     /**
-     * saveSelected
+     * saveSelection
      * @param matchSelectionDto 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveSelectedUsingPOST(matchSelectionDto?: MatchSelectionDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<object>;
-    public saveSelectedUsingPOST(matchSelectionDto?: MatchSelectionDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<object>>;
-    public saveSelectedUsingPOST(matchSelectionDto?: MatchSelectionDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<object>>;
-    public saveSelectedUsingPOST(matchSelectionDto?: MatchSelectionDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
+    public saveSelectionUsingPOST(matchSelectionDto?: MatchSelectionDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<object>;
+    public saveSelectionUsingPOST(matchSelectionDto?: MatchSelectionDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<object>>;
+    public saveSelectionUsingPOST(matchSelectionDto?: MatchSelectionDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<object>>;
+    public saveSelectionUsingPOST(matchSelectionDto?: MatchSelectionDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 

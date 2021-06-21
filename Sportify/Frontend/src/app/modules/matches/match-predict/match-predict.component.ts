@@ -15,6 +15,9 @@ export class MatchPredictComponent implements OnInit {
   selectedTeam: Selection;
   match: MatchDto;
   selected: boolean = false;
+  isSelectedBefore:boolean=false;
+  loaded:boolean=false;
+  previousSelectionInDB:string;
   constructor(private _userScoresService: UserPredictionService, private _activatedRoute: ActivatedRoute, private _matchService: GamesControllerService) {
   }
 
@@ -23,17 +26,29 @@ export class MatchPredictComponent implements OnInit {
       let id: number = +params.get("id");
       this._matchService.getMatchUsingGET(id).subscribe(e => {
         this.match = e as MatchDto;
+
+
+        this._userScoresService.checkSelectedUsingPOST(this.getSelectionDto()).subscribe(r => {
+            let matchSelectionDto= r as MatchSelectionDto;
+            let selectedTeam= this.match.teams.filter(team=>team.team.id==matchSelectionDto.selectedTeamId);
+            this.previousSelectionInDB=selectedTeam[0].team.name;
+            this.isSelectedBefore=true;
+         });
+
+         this.loaded=true;
       }
       );
 
     })
+
+
 
   }
 
 
   sendPrediction() {
    //TODO add Token to the request header
-    this._userScoresService.saveSelectedUsingPOST(this. getSelectionDto()).subscribe(r => {
+    this._userScoresService.saveSelectionUsingPOST(this. getSelectionDtoWithTeam()).subscribe(r => {
       console.log("done done done ")
     });
   }
@@ -48,17 +63,23 @@ export class MatchPredictComponent implements OnInit {
   }
 
 
-  getSelectionDto(): MatchSelectionDto {
+  getSelectionDtoWithTeam(): MatchSelectionDto {
     let selectedPrediction: MatchSelectionDto=new MatchSelectionDto;
     switch (this.selectedTeam) {
       case Selection.TEAM01_SELECTED:
-        console.log(this.match.teams[0].team.id)
         selectedPrediction.selectedTeamId = this.match.teams[0].team.id;
+        break;
       case Selection.TEAM02_SELECTED:
-        console.log(this.match.teams[1].team.id)
         selectedPrediction.selectedTeamId = this.match.teams[1].team.id;
     }
 
+    selectedPrediction.matchId=this.match.id;
+    //TODO get user email from the principal
+    selectedPrediction.userEmail="Test";
+    return selectedPrediction;
+  }
+  getSelectionDto():MatchSelectionDto{
+    let selectedPrediction: MatchSelectionDto=new MatchSelectionDto;
     selectedPrediction.matchId=this.match.id;
     //TODO get user email from the principal
     selectedPrediction.userEmail="Test";

@@ -8,6 +8,7 @@ import { MatchesListComponent } from './matches-list/matches-list.component';
 import { MatchPredictComponent } from './match-predict/match-predict.component';
 import { PredictionSliderComponent } from './prediction-slider/prediction-slider.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: "", component: MatchesListComponent },
@@ -24,7 +25,7 @@ const routes: Routes = [
 
   ],
   imports: [
-    CommonModule, HttpClientModule, ReactiveFormsModule, FormsModule, RouterModule.forChild(routes),NgxSliderModule
+    CommonModule, HttpClientModule, ReactiveFormsModule, FormsModule, RouterModule.forChild(routes),NgxSliderModule,SharedModule
   ],
   exports: [
     HttpClientModule,
