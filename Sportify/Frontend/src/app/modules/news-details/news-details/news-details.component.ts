@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NewsDto } from 'src/app/openapi';
+import {Component, Input, OnInit} from '@angular/core';
+import {GamesControllerService, NewsControllerService, NewsDetailsDto, NewsDto} from 'src/app/openapi';
 
 @Component({
   selector: 'app-news-details',
@@ -8,11 +8,15 @@ import { NewsDto } from 'src/app/openapi';
 })
 export class NewsDetailsComponent implements OnInit {
 
-  articleDetails: NewsDto;
+  articleDetails: NewsDetailsDto;
+  @Input()
+  id: number;
 
-  constructor() { }
+  constructor(private newsService: NewsControllerService) { }
 
   ngOnInit(): void {
+    this.newsService.getNewsUsingGET2(this.id).subscribe( newsDetails => {
+      this.articleDetails = newsDetails;
+    });
   }
-
 }

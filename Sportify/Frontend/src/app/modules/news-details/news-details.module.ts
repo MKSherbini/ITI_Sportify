@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewsDetailsComponent } from './news-details/news-details.component';
+import {RouterModule, Routes} from '@angular/router';
 
 
-
+// const routes: Routes = [
+//   {path: '/news/:id', component: NewsDetailsComponent}
+// ];
 @NgModule({
   declarations: [
     NewsDetailsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, // RouterModule.forChild(routes)
   ]
 })
 export class NewsDetailsModule { }

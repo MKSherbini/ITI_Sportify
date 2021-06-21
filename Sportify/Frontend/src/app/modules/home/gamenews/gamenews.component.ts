@@ -9,7 +9,7 @@ import { Game, GamesControllerService, NewsDto } from 'src/app/openapi';
 })
 export class GamenewsComponent implements OnInit {
 
-  
+
   allNews: NewsDto[];
 
   constructor(private gamesService: GamesControllerService) { }
