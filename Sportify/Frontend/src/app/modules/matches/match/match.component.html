@@ -11,12 +11,22 @@
       </a>
     </div>
     <div class="nk-match-status">
-      <a routerLink="/matches/{{match.id}}">
+
+
+      <a *ngIf="!isStartedMatch()"  routerLink="/matches/{{match.id}}">
         <span class="nk-match-status-vs">VS</span>
         <span class="nk-match-status-date">{{match.scheduledAt | date:'medium'}}</span>
         <span class="nk-match-score bg-danger">{{this.match.teams[0].score}} : {{this.match.teams[1].score}}</span> <br>
         <span class="nk-match-score bg-secondary">{{this.match.status}}</span>
       </a>
+      <div *ngIf="isStartedMatch()">
+        <span class="nk-match-status-vs">VS</span>
+        <span class="nk-match-status-date">{{match.scheduledAt | date:'medium'}}</span>
+        <span class="nk-match-score bg-danger">{{this.match.teams[0].score}} : {{this.match.teams[1].score}}</span> <br>
+        <span class="nk-match-score bg-secondary">{{this.match.status}}</span>
+      </div>
+
+
     </div>
     <div class="nk-match-team-right">
       <a href="#">
