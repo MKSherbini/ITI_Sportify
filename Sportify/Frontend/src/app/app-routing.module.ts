@@ -22,7 +22,12 @@ const routes: Routes = [
     loadChildren: () => import('../app/modules/matches/matches.module').then(m => m.MatchesModule)
     // ,  canActivate:[AuthGuard]
   },
-
+  {
+    path: 'article',
+    component: LayoutComponent,
+    loadChildren: () => import('../app/modules/news-details/news-details.module').then(m => m.NewsDetailsModule)
+    // ,  canActivate:[AuthGuard]
+  },
 ];
 
 @NgModule({

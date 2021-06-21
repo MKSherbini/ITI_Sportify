@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {GamesControllerService, NewsControllerService, NewsDetailsDto, NewsDto} from 'src/app/openapi';
 
 @Component({
@@ -9,14 +10,16 @@ import {GamesControllerService, NewsControllerService, NewsDetailsDto, NewsDto} 
 export class NewsDetailsComponent implements OnInit {
 
   articleDetails: NewsDetailsDto;
-  @Input()
-  id: number;
 
-  constructor(private newsService: NewsControllerService) { }
+
+  constructor(private newsService: NewsControllerService, private _activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.newsService.getNewsUsingGET2(this.id).subscribe( newsDetails => {
-      this.articleDetails = newsDetails;
-    });
-  }
+    this._activatedRoute.paramMap.subscribe(params => {
+      let id: number = +params.get("id");
+      this.newsService.getNewsUsingGET2(id).subscribe( newsDetails => {
+        this.articleDetails = newsDetails;
+      });
+  })
+}
 }

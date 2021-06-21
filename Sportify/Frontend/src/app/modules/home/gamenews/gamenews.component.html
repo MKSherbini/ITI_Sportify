@@ -156,18 +156,18 @@
 
       <!-- START: Posts Grid -->
       <div class="nk-blog-grid">
-          <div class="row">
+          <div class="row" >
 
               <div class="col-md-6" *ngFor="let news of allNews">
                   <!-- START: Post -->
                   <div class="nk-blog-post">
                       <a href="blog-article.html" class="nk-post-img">
-                          <img {{news.image}} >
+                          <img [src]="news.image">
                       </a>
                       <div class="nk-gap"></div>
                       <h2 class="nk-post-title h4"><a href="blog-article.html">{{news.title}}</a></h2>
                       <div class="nk-post-text">
-                          <p>{{news.content}}</p>
+                          <p>{{news.description}}...</p>
                       </div>
                       <div class="nk-gap"></div>
                       <a href="blog-article.html" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
