@@ -54,6 +54,7 @@ export class MatchPredictComponent implements OnInit {
       case Selection.TEAM01_SELECTED:
         console.log(this.match.teams[0].team.id)
         selectedPrediction.selectedTeamId = this.match.teams[0].team.id;
+        break;
       case Selection.TEAM02_SELECTED:
         console.log(this.match.teams[1].team.id)
         selectedPrediction.selectedTeamId = this.match.teams[1].team.id;
