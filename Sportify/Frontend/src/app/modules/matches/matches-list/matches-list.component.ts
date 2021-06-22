@@ -17,10 +17,11 @@ export class MatchesListComponent implements OnInit {
   constructor(private gamesService: GamesControllerService) { }
 
   ngOnInit(): void {
-    console.log("MatchesListComponent");
+
     this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Lol).subscribe(ret => {
       this.latestMatches = ret;
       this.shownMatches=this.latestMatches;
+      
     })
 
   }

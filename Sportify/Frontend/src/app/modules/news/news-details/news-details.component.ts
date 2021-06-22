@@ -17,7 +17,7 @@ export class NewsDetailsComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe(params => {
       let id: number = +params.get("id");
-      this.newsService.getNewsUsingGET2(id).subscribe( newsDetails => {
+      this.newsService.getNewsUsingGET(id).subscribe( newsDetails => {
         this.articleDetails = newsDetails;
       });
   })

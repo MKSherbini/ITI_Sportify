@@ -17,8 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { NewsDetailsDto } from '../model/models';
-import { NewsDto } from '../model/models';
+import { TeamDto } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -28,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class NewsControllerService {
+export class TeamsControllerService {
 
     protected basePath = 'http://localhost:9899';
     public defaultHeaders = new HttpHeaders();
@@ -86,14 +85,18 @@ export class NewsControllerService {
     }
 
     /**
-     * getAllNews
+     * getTeam
+     * @param teamId teamId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllNewsUsingGET(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<Array<NewsDto>>;
-    public getAllNewsUsingGET(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<Array<NewsDto>>>;
-    public getAllNewsUsingGET(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<Array<NewsDto>>>;
-    public getAllNewsUsingGET(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
+    public getTeamUsingGET(teamId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<TeamDto>;
+    public getTeamUsingGET(teamId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<TeamDto>>;
+    public getTeamUsingGET(teamId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<TeamDto>>;
+    public getTeamUsingGET(teamId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
+        if (teamId === null || teamId === undefined) {
+            throw new Error('Required parameter teamId was null or undefined when calling getTeamUsingGET.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -115,7 +118,7 @@ export class NewsControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<NewsDto>>(`${this.configuration.basePath}/api/news`,
+        return this.httpClient.get<TeamDto>(`${this.configuration.basePath}/api/teams/${encodeURIComponent(String(teamId))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -127,18 +130,14 @@ export class NewsControllerService {
     }
 
     /**
-     * getNews
-     * @param newsId newsId
+     * getTeams
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getNewsUsingGET(newsId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<NewsDetailsDto>;
-    public getNewsUsingGET(newsId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<NewsDetailsDto>>;
-    public getNewsUsingGET(newsId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<NewsDetailsDto>>;
-    public getNewsUsingGET(newsId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
-        if (newsId === null || newsId === undefined) {
-            throw new Error('Required parameter newsId was null or undefined when calling getNewsUsingGET.');
-        }
+    public getTeamsUsingGET(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<Array<TeamDto>>;
+    public getTeamsUsingGET(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<Array<TeamDto>>>;
+    public getTeamsUsingGET(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<Array<TeamDto>>>;
+    public getTeamsUsingGET(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -160,7 +159,7 @@ export class NewsControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<NewsDetailsDto>(`${this.configuration.basePath}/api/news/${encodeURIComponent(String(newsId))}`,
+        return this.httpClient.get<Array<TeamDto>>(`${this.configuration.basePath}/api/teams`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

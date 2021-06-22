@@ -28,13 +28,13 @@ export class PredictionSliderComponent implements OnInit {
       switch (value) {
         case 0:
           this.changeState(Selection.TEAM01_SELECTED);
-          return this.team01.team.name;
+          return this.team01.team.acronym;
         case 100:
           this.changeState(Selection.NOTSELECTED);
-          return "C"
+          return "Choose Team"
         case 200:
           this.changeState(Selection.TEAM02_SELECTED);
-          return this.team02.team.name;
+          return this.team02.team.acronym;
       }
 
     }

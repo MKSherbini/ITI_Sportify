@@ -85,17 +85,58 @@ export class MatchesControllerService {
     }
 
     /**
+     * getAllMatches
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getAllMatchesUsingGET(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<Array<MatchDto>>;
+    public getAllMatchesUsingGET(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<Array<MatchDto>>>;
+    public getAllMatchesUsingGET(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<Array<MatchDto>>>;
+    public getAllMatchesUsingGET(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                '*/*'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.get<Array<MatchDto>>(`${this.configuration.basePath}/api/matches`,
+            {
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * getMatch
      * @param matchId matchId
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getMatchUsingGET1(matchId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<MatchDto>;
-    public getMatchUsingGET1(matchId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<MatchDto>>;
-    public getMatchUsingGET1(matchId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<MatchDto>>;
-    public getMatchUsingGET1(matchId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
+    public getMatchUsingGET(matchId: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<MatchDto>;
+    public getMatchUsingGET(matchId: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpResponse<MatchDto>>;
+    public getMatchUsingGET(matchId: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*'}): Observable<HttpEvent<MatchDto>>;
+    public getMatchUsingGET(matchId: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*'}): Observable<any> {
         if (matchId === null || matchId === undefined) {
-            throw new Error('Required parameter matchId was null or undefined when calling getMatchUsingGET1.');
+            throw new Error('Required parameter matchId was null or undefined when calling getMatchUsingGET.');
         }
 
         let headers = this.defaultHeaders;
@@ -118,7 +159,7 @@ export class MatchesControllerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<MatchDto>(`${this.configuration.basePath}/api/matches/matches/${encodeURIComponent(String(matchId))}`,
+        return this.httpClient.get<MatchDto>(`${this.configuration.basePath}/api/matches/${encodeURIComponent(String(matchId))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

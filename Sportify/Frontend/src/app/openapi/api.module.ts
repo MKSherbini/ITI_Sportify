@@ -14,6 +14,7 @@ import { PublishTestService } from './api/publishTest.service';
 import { TeamEntityService } from './api/teamEntity.service';
 import { TeamMatchScoreEntityService } from './api/teamMatchScoreEntity.service';
 import { TeamMemberEntityService } from './api/teamMemberEntity.service';
+import { TeamsControllerService } from './api/teamsController.service';
 
 @NgModule({
   imports:      [],

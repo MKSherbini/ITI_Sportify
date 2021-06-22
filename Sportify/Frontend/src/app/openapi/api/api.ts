@@ -22,4 +22,6 @@ export * from './teamMatchScoreEntity.service';
 import { TeamMatchScoreEntityService } from './teamMatchScoreEntity.service';
 export * from './teamMemberEntity.service';
 import { TeamMemberEntityService } from './teamMemberEntity.service';
-export const APIS = [BasicErrorControllerService, GameEntityService, GamesControllerService, MatchEntityService, MatchesControllerService, NewsControllerService, NewsEntityService, ProfileControllerService, PublishTestService, TeamEntityService, TeamMatchScoreEntityService, TeamMemberEntityService];
+export * from './teamsController.service';
+import { TeamsControllerService } from './teamsController.service';
+export const APIS = [BasicErrorControllerService, GameEntityService, GamesControllerService, MatchEntityService, MatchesControllerService, NewsControllerService, NewsEntityService, ProfileControllerService, PublishTestService, TeamEntityService, TeamMatchScoreEntityService, TeamMemberEntityService, TeamsControllerService];

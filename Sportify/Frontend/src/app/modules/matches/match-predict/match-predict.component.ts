@@ -5,6 +5,7 @@ import { GameDetailsControllerService } from 'src/app/openapi/api/gameDetailsCon
 import { Selection } from 'src/app/models/Selection';
 import { UserPredictionService } from 'src/app/userScoresOpenApi';
 import { MatchSelectionDto } from 'src/app/models/MatchSelectionDto';
+import { MatchesControllerService } from 'src/app/openapi/api/matchesController.service';
 
 @Component({
   selector: 'app-match-predict',
@@ -18,7 +19,7 @@ export class MatchPredictComponent implements OnInit {
   isSelectedBefore:boolean=false;
   loaded:boolean=false;
   previousSelectionInDB:string;
-  constructor(private _userScoresService: UserPredictionService, private _activatedRoute: ActivatedRoute, private _matchService: GamesControllerService) {
+  constructor(private _userScoresService: UserPredictionService, private _activatedRoute: ActivatedRoute, private _matchService: MatchesControllerService) {
   }
 
   ngOnInit(): void {
@@ -30,6 +31,8 @@ export class MatchPredictComponent implements OnInit {
 
         this._userScoresService.checkSelectedUsingPOST(this.getSelectionDto()).subscribe(r => {
             let matchSelectionDto= r as MatchSelectionDto;
+            console.log(r);
+            console.log(this.getSelectionDto());
             let selectedTeam= this.match.teams.filter(team=>team.team.id==matchSelectionDto.selectedTeamId);
             this.previousSelectionInDB=selectedTeam[0].team.name;
             this.isSelectedBefore=true;
