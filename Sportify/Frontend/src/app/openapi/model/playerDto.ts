@@ -11,14 +11,18 @@
  */
 
 
-export interface TeamMemberDto { 
+export interface PlayerDto { 
     birthYear?: string;
     birthday?: string;
     firstName?: string;
     hometown?: string;
+    id?: number;
     imageUrl?: string;
     lastName?: string;
     name?: string;
     nationality?: string;
+    teamAcronym?: string;
+    teamImageUrl?: string;
+    teamName?: string;
 }
 

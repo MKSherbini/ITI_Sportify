@@ -6,6 +6,7 @@ import { BasicErrorControllerService } from './api/basicErrorController.service'
 import { GamesControllerService } from './api/gamesController.service';
 import { MatchesControllerService } from './api/matchesController.service';
 import { NewsControllerService } from './api/newsController.service';
+import { PlayerControllerService } from './api/playerController.service';
 import { ProfileControllerService } from './api/profileController.service';
 import { PublishTestService } from './api/publishTest.service';
 import { TeamsControllerService } from './api/teamsController.service';

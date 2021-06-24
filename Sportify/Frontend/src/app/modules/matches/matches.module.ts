@@ -12,7 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: "", component: MatchesListComponent },
-  { path: ":id", component: MatchPredictComponent }
+  { path: ":id", component: MatchPredictComponent },
 ]
 
 @NgModule({
@@ -20,9 +20,7 @@ const routes: Routes = [
     MatchComponent,
     MatchesListComponent,
     MatchPredictComponent,
-    PredictionSliderComponent
-
-
+    PredictionSliderComponent,
   ],
   imports: [
     CommonModule, HttpClientModule, ReactiveFormsModule, FormsModule, RouterModule.forChild(routes),NgxSliderModule,SharedModule

@@ -7,6 +7,7 @@ api/basicErrorController.service.ts
 api/gamesController.service.ts
 api/matchesController.service.ts
 api/newsController.service.ts
+api/playerController.service.ts
 api/profileController.service.ts
 api/publishTest.service.ts
 api/teamsController.service.ts
@@ -23,9 +24,9 @@ model/models.ts
 model/news.ts
 model/newsDetailsDto.ts
 model/newsDto.ts
+model/playerDto.ts
 model/representationModelOfobject.ts
 model/teamDto.ts
 model/teamMatchScoreDto.ts
-model/teamMemberDto.ts
 model/view.ts
 variables.ts
