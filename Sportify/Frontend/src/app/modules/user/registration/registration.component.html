@@ -1,17 +1,30 @@
+<div class="nk-gap-1"></div>
+  <div class="container">
+    <ul class="nk-breadcrumbs">
 
-<div class="card" >
+
+      <li><a href="index.html">Home</a></li>
+
+
+      <li><span class="fa fa-angle-right"></span></li>
+
+      <li><span>Registration Form</span></li>
+
+    </ul>
+  </div>
+<div class="card bg-dark" >
   <div class="card-body">
-      <h5 class="card-title">Registration Form</h5>
       <form [formGroup]="formGroup">
           <label>User Name</label>
-          <input formControlName="userName" class="form-control" type="text" required>
+          <input formControlName="userName" class="form-control" type="text" [required]="true">
           <label>User Email</label>
-          <input formControlName="email" class="form-control" type="text" required>
+          <input formControlName="email" class="form-control" type="text" [required]="true">
           <label>Password</label>
+          <input formControlName="password" class="form-control" type="password" [required]="true">
 
-          <input formControlName="password" class="form-control" type="password" required>
-          <input [disabled]="formGroup.invalid" class="btn btn-primary mt-4" type="submit" (click)="saveUser()">
+          <input class="btn btn-primary mt-4" type="submit" (click)="saveUser()">
       </form>
-
   </div>
 </div>
+<div class="nk-gap-1"></div>
+
