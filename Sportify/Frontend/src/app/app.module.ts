@@ -8,16 +8,15 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './modules/shared/shared.module';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SharedModule
+    ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [AppComponent]
 })

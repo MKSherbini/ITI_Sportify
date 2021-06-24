@@ -10,16 +10,16 @@ import { Login } from '../models/login';
 export class LoginService {
   logged:boolean=false;
   authenticateUrl:string=environment.AuthenticateUrl;
-  jwt:string;
+  jwttoken:string;
   constructor(private _http:HttpClient) { }
 
   login(obj:Login){
      return this._http.post(this.authenticateUrl,obj);
   }
-  addToken(jwt:string){
-    localStorage.setItem('token',jwt);
+  addToken(jwttoken:string){
+    localStorage.setItem('token', jwttoken);
   }
-  removeToken(jwt:string){
+  removeToken(jwttoken:string){
     localStorage.removeItem('token');
   }
 

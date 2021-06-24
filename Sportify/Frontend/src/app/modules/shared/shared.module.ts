@@ -7,9 +7,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeadComponent } from './head/head.component';
-
-
-
+import {UserModule} from '../user/user.module';
 
 @NgModule({
   declarations: [
@@ -18,10 +16,10 @@ import { HeadComponent } from './head/head.component';
     FooterComponent,
     HeadComponent
   ],
-  imports: [
-    CommonModule, RouterModule,HttpClientModule,ReactiveFormsModule,FormsModule
-  ],
-  exports:[
+    imports: [
+        CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, UserModule
+    ],
+  exports: [
     HeaderComponent,
     HttpClientModule,
     ReactiveFormsModule,
