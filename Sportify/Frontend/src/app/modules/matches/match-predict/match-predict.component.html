@@ -3,7 +3,7 @@
   <div class="nk-match-team-left">
     <a href="#">
       <span class="nk-match-team-logo">
-        <img src="assets/images/team-1.jpg" alt="">
+        <img src="{{this.match.teams[0].team.imageUrl}}" width="150" alt="">
       </span>
       <span  class="nk-match-team-name"  >
         {{match.teams[0].team.name}} ({{match.teams[0].team.acronym}})
@@ -30,7 +30,7 @@
         {{match.teams[1].team.name}} ({{match.teams[1].team.acronym}})
       </span>
       <span class="nk-match-team-logo">
-        <img src="assets/images/team-2.jpg" alt="">
+        <img src="{{this.match.teams[1].team.imageUrl}}" width="150" alt="">
       </span>
     </a>
   </div>
