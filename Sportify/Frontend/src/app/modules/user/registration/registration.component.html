@@ -1,30 +1,58 @@
 <div class="nk-gap-1"></div>
-  <div class="container">
-    <ul class="nk-breadcrumbs">
+<div class="container">
+  <ul class="nk-breadcrumbs">
 
 
-      <li><a href="index.html">Home</a></li>
+    <li><a href="index.html">Home</a></li>
 
 
-      <li><span class="fa fa-angle-right"></span></li>
+    <li><span class="fa fa-angle-right"></span></li>
 
-      <li><span>Registration Form</span></li>
+    <li><span>Registration Form</span></li>
 
-    </ul>
-  </div>
-<div class="card bg-dark" >
+  </ul>
+</div>
+<div class="card bg-dark">
   <div class="card-body">
-      <form [formGroup]="formGroup">
-          <label>User Name</label>
-          <input formControlName="userName" class="form-control" type="text" [required]="true">
-          <label>User Email</label>
-          <input formControlName="email" class="form-control" type="text" [required]="true">
-          <label>Password</label>
-          <input formControlName="password" class="form-control" type="password" [required]="true">
+    <form [formGroup]="formGroup">
+      <label>User Name</label>
+      <input id="userName" name="userName" formControlName="userName" class="form-control" type="text" [required]="true">
 
-          <input class="btn btn-primary mt-4" type="submit" (click)="saveUser()">
-      </form>
+      <div *ngIf="formGroup.controls['userName'].invalid && (formGroup.controls['userName'].dirty || formGroup.controls['userName'].touched)"
+      class="alert alert-danger">
+      <div *ngIf="formGroup.controls['userName'].errors?.required">
+        Name is required.
+      </div>
+      <div *ngIf="formGroup.controls['userName'].errors?.minlength">
+        Name must be at least 6 characters long.
+      </div>
+    </div>
+
+      <label>User Email</label>
+      <input formControlName="email" class="form-control" type="text" [required]="true">
+      <div *ngIf="formGroup.controls['email'].invalid && (formGroup.controls['email'].dirty || formGroup.controls['email'].touched)"
+      class="alert alert-danger">
+      <div *ngIf="formGroup.controls['email'].errors?.required">
+        Email is required.
+      </div>
+      <div *ngIf="formGroup.controls['email'].errors?.pattern">
+        Email must be in format xxx@xxx.com
+      </div>
+    </div>
+      <label>Password</label>
+      <input formControlName="password" class="form-control" type="password" [required]="true">
+      <div *ngIf="formGroup.controls['password'].invalid && (formGroup.controls['password'].dirty || formGroup.controls['password'].touched)"
+      class="alert alert-danger">
+      <div *ngIf="formGroup.controls['password'].errors?.required">
+        Password is required.
+      </div>
+      <div *ngIf="formGroup.controls['password'].errors?.minlength">
+        Password must be at least 6 characters long.
+
+      </div>
+    </div>
+      <input [disabled]="formGroup.invalid" class="btn btn-primary mt-4" type="submit" (click)="saveUser()">
+    </form>
   </div>
 </div>
 <div class="nk-gap-1"></div>
-
