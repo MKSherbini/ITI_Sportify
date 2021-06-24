@@ -17,13 +17,40 @@ export class MatchesListComponent implements OnInit {
   constructor(private gamesService: GamesControllerService) { }
 
   ngOnInit(): void {
-
     this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Lol).subscribe(ret => {
       this.latestMatches = ret;
       this.shownMatches=this.latestMatches;
-      
     })
 
+  }
+
+  getLolMatches(){
+    this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Lol).subscribe(gameMatches =>{
+      console.log(gameMatches.length);
+      this.latestMatches = gameMatches;
+      this.changeMatches();
+    })
+  }
+
+  getValorantMatches(){
+    this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Valorant).subscribe(gameMatches =>{
+      this.latestMatches = gameMatches;
+      this.changeMatches();
+    })
+  }
+
+  getDota2Matches(){
+    this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Dota2).subscribe(gameMatches =>{
+      this.latestMatches = gameMatches;
+      this.changeMatches();
+    })
+  }
+
+  getCodmwMatches(){
+    this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Codmw).subscribe(gameMatches =>{
+      this.latestMatches = gameMatches;
+      this.changeMatches();
+    })
   }
 
   changeMatches(){
