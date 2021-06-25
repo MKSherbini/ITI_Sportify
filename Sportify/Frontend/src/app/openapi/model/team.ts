@@ -9,11 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { TeamMember } from './teamMember';
 
 
 export interface Team { 
     acronym?: string;
     id?: number;
+    imageUrl?: string;
     name?: string;
+    teamMembers?: Array<TeamMember>;
 }
 

@@ -24,6 +24,8 @@
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css",
               "src/assets/vendor/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/vendor/ionicons/css/ionicons.min.css",
@@ -33,6 +35,7 @@
               "src/assets/vendor/bootstrap-slider/dist/css/bootstrap-slider.min.css",
               "src/assets/vendor/summernote/dist/summernote-bs4.css",
               "src/assets/css/goodgames.css",
+              "src/assets/css/goodgames.min.css",
               "src/assets/css/custom.css"
             ],
             "scripts": [

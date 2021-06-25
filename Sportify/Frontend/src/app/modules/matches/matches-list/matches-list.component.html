@@ -1,6 +1,12 @@
 <div class="nk-gap-2"></div>
 <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Latest</span> Matches</span></h3>
 <div class="nk-gap"></div>
-<div *ngFor="let match of latestMatches">
+<mat-button-toggle-group (valueChange)="changeMatches()"  [(ngModel)]="selectedFilter" name="matchesGroup">
+  <mat-button-toggle value="Show All">Show All</mat-button-toggle>
+  <mat-button-toggle value="Finished">Finished</mat-button-toggle>
+  <mat-button-toggle value="Not Started">Not Started</mat-button-toggle>
+</mat-button-toggle-group>
+
+<div *ngFor="let match of shownMatches">
   <app-match [match]="match"></app-match>
 </div>

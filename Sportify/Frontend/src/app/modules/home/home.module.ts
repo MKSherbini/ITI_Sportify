@@ -3,27 +3,29 @@ import { CommonModule } from '@angular/common';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SharedModule } from '../shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
+import { NavComponent } from './nav/nav.component';
+import { HomeLayoutComponent } from './home-layout/home-layout.component';
 import { SecondPageComponent } from './second-page/second-page.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
-import { MatchesModule } from '../matches/matches.module';
-import { UserModule } from '../user/user.module';
 
 
 const routes: Routes = [
-  { path: 'second', component: SecondPageComponent, canActivate: [AuthGuard] },
-  { path: '', component: WelcomeComponent }
+  {path:'second',component:SecondPageComponent,canActivate:[AuthGuard]},
+  {path:"",component:WelcomeComponent}
+
 ]
 @NgModule({
   declarations: [
     WelcomeComponent,
-    SecondPageComponent
+    NavComponent,
+    HomeLayoutComponent,
+    SecondPageComponent,
   ],
   imports: [
-    CommonModule,
+    CommonModule,RouterModule.forChild(routes),
     SharedModule,
-    RouterModule.forChild(routes),
   ],
-  bootstrap: []
+  bootstrap: [HomeLayoutComponent]
 
 })
 export class HomeModule { }

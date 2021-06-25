@@ -112,6 +112,7 @@ export class LoginComponent implements OnInit {
 
       console.log(this.logInFormGroup.get('admin').value.password);
       console.log(this.logInFormGroup.get('admin').value.userName);
+
       // sessionStorage.setItem(`${TOKEN}`, `${response.token}`);
       // console.log(this.auth.executeAuthentication(this.logInFormGroup.get('admin').value.userName, this.logInFormGroup.get('admin').value.password));
     }

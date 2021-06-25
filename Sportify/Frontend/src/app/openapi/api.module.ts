@@ -6,11 +6,15 @@ import { BasicErrorControllerService } from './api/basicErrorController.service'
 import { GameEntityService } from './api/gameEntity.service';
 import { GamesControllerService } from './api/gamesController.service';
 import { MatchEntityService } from './api/matchEntity.service';
+import { MatchesControllerService } from './api/matchesController.service';
+import { NewsControllerService } from './api/newsController.service';
 import { NewsEntityService } from './api/newsEntity.service';
 import { ProfileControllerService } from './api/profileController.service';
 import { PublishTestService } from './api/publishTest.service';
 import { TeamEntityService } from './api/teamEntity.service';
 import { TeamMatchScoreEntityService } from './api/teamMatchScoreEntity.service';
+import { TeamMemberEntityService } from './api/teamMemberEntity.service';
+import { TeamsControllerService } from './api/teamsController.service';
 
 @NgModule({
   imports:      [],

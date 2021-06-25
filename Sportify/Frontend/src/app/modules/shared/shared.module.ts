@@ -7,6 +7,10 @@ import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeadComponent } from './head/head.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
+
 import {UserModule} from '../user/user.module';
 
 @NgModule({
@@ -17,7 +21,7 @@ import {UserModule} from '../user/user.module';
     HeadComponent
   ],
     imports: [
-        CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, UserModule
+        CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, UserModule, MatButtonToggleModule
     ],
   exports: [
     HeaderComponent,
@@ -25,7 +29,8 @@ import {UserModule} from '../user/user.module';
     ReactiveFormsModule,
     FormsModule,
     FooterComponent,
-    HeadComponent
+    HeadComponent,
+    MatButtonToggleModule
   ]
 })
 export class SharedModule { }

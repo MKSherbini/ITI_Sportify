@@ -10,18 +10,19 @@ export class MatchComponent implements OnInit {
 
   @Input("match")
   match: MatchDto;
-
   constructor() { }
 
   ngOnInit(): void {
     this.checkRequiredFields(this.match);
     console.log(this.match);
-
   }
 
   checkRequiredFields(input) {
     if (input === null) {
       throw new Error("Match is required");
     }
+  }
+  isStartedMatch():boolean{
+     return this.match.status!=MatchDto.StatusEnum.NotStarted;
   }
 }

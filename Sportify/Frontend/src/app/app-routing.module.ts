@@ -28,7 +28,13 @@ const routes: Routes = [
     component: LoginComponent,
     loadChildren: () => import('../app/modules/user/user.module').then(m => m.UserModule)
     // ,  canActivate:[AuthGuard]
-  }
+  },
+  {
+    path: 'news',
+    component: LayoutComponent,
+    loadChildren: () => import('../app/modules/news/news.module').then(m => m.NewsModule)
+    // ,  canActivate:[AuthGuard]
+  },
 ];
 
 @NgModule({

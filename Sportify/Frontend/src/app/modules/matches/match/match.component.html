@@ -3,7 +3,7 @@
     <div class="nk-match-team-left">
       <a href="#">
         <span class="nk-match-team-logo">
-          <img src="assets/images/team-1.jpg" alt="">
+          <img src="{{this.match.teams[0].team.imageUrl}}" width="150" alt="">
         </span>
         <span class="nk-match-team-name">
           {{match.teams[0].team.name}} ({{match.teams[0].team.acronym}})
@@ -11,12 +11,22 @@
       </a>
     </div>
     <div class="nk-match-status">
-      <a href="#">
+
+
+      <a *ngIf="!isStartedMatch()"  routerLink="/matches/{{match.id}}">
         <span class="nk-match-status-vs">VS</span>
         <span class="nk-match-status-date">{{match.scheduledAt | date:'medium'}}</span>
         <span class="nk-match-score bg-danger">{{this.match.teams[0].score}} : {{this.match.teams[1].score}}</span> <br>
         <span class="nk-match-score bg-secondary">{{this.match.status}}</span>
       </a>
+      <div *ngIf="isStartedMatch()">
+        <span class="nk-match-status-vs">VS</span>
+        <span class="nk-match-status-date">{{match.scheduledAt | date:'medium'}}</span>
+        <span class="nk-match-score bg-danger">{{this.match.teams[0].score}} : {{this.match.teams[1].score}}</span> <br>
+        <span class="nk-match-score bg-secondary">{{this.match.status}}</span>
+      </div>
+
+
     </div>
     <div class="nk-match-team-right">
       <a href="#">
@@ -24,7 +34,7 @@
           {{match.teams[1].team.name}} ({{match.teams[1].team.acronym}})
         </span>
         <span class="nk-match-team-logo">
-          <img src="assets/images/team-2.jpg" alt="">
+          <img src="{{this.match.teams[1].team.imageUrl}}" width="150" alt="">
         </span>
       </a>
     </div>

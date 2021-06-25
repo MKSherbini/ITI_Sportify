@@ -8,12 +8,12 @@ import { Login } from '../models/login';
   providedIn: 'root'
 })
 export class LoginService {
-  logged:boolean=false;
-  authenticateUrl:string=environment.AuthenticateUrl;
+  logged=false;
+  authenticateUrl:string =environment.AuthenticateUrl;
   jwttoken:string;
   constructor(private _http:HttpClient) { }
 
-  login(obj:Login){
+  login(obj: Login){
      return this._http.post(this.authenticateUrl,obj);
   }
   addToken(jwttoken:string){

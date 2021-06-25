@@ -13,6 +13,8 @@ import { TeamMatchScoreDto } from './teamMatchScoreDto';
 
 
 export interface MatchDto { 
+    game?: string;
+    id?: number;
     name?: string;
     scheduledAt?: string;
     status?: MatchDto.StatusEnum;
