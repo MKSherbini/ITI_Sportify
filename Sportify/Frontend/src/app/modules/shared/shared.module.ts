@@ -11,6 +11,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 
+import {UserModule} from '../user/user.module';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,10 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     FooterComponent,
     HeadComponent
   ],
-  imports: [
-    CommonModule, RouterModule,HttpClientModule,ReactiveFormsModule,FormsModule,MatButtonToggleModule
-  ],
-  exports:[
+    imports: [
+        CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, UserModule, MatButtonToggleModule
+    ],
+  exports: [
     HeaderComponent,
     HttpClientModule,
     ReactiveFormsModule,
