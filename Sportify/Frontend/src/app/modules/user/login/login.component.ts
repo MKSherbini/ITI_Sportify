@@ -5,6 +5,7 @@ import {Spacevalidator} from '../../../models/spacevalidator';
 import {AuthenticationService} from '../../../services/authentication.service';
 import 'rxjs/add/operator/toPromise';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
