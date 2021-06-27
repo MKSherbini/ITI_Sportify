@@ -2,7 +2,7 @@
     <form [formGroup]="formGroup">
       <label >Title</label><br>
       <input type="text" formControlName="title" required><br><br>
-  
+
       <label >Description</label><br>
       <input type="text" formControlName="description" required><br><br>
 
@@ -11,7 +11,7 @@
 
       <label>Image Url</label><br>
       <input type="text" formControlName="image" required><br><br>
-  
+
       <label >Choose Game</label><br>
       <select formControlName="game" required><br><br>
         <option value="lol">LoL</option>
@@ -26,8 +26,8 @@
       <label>Content</label><br>
       <textarea placeholder="Write something.." style="height:200px" formControlName="content" required></textarea>
       <br><br>
-      <input value="Add" [disabled]="formGroup.invalid" (click)="onSubmit()"> 
-  
+      <input value="Add" type="button" [disabled]="formGroup.invalid" (click)="onSubmit()">
+
     </form>
   </div>
 
