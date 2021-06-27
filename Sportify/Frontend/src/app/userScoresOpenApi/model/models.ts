@@ -1,3 +1,4 @@
+export * from './matchResultHistoryDto';
 export * from './matchSelection';
 export * from './matchSelectionDto';
 export * from './modelAndView';

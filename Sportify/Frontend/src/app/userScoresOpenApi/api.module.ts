@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 import { BasicErrorControllerService } from './api/basicErrorController.service';
+import { MatchesResourceService } from './api/matchesResource.service';
 import { UserPredictionService } from './api/userPrediction.service';
 
 @NgModule({
