@@ -9,15 +9,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { Links } from './links';
 
 
-export interface NewsDto { 
-    date?: string;
-    description?: string;
-    game?: string;
+export interface EntityModelOfTeamMember { 
+    birthYear?: string;
+    birthday?: string;
+    firstName?: string;
+    hometown?: string;
     id?: number;
-    image?: string;
-    publisher?: string;
-    title?: string;
+    imageUrl?: string;
+    lastName?: string;
+    links?: Links;
+    name?: string;
+    nationality?: string;
 }
 

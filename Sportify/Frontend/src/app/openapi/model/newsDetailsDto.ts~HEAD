@@ -11,13 +11,24 @@
  */
 
 
-export interface NewsDto { 
+export interface NewsDetailsDto { 
+    content?: string;
     date?: string;
     description?: string;
-    game?: string;
+    game?: NewsDetailsDto.GameEnum;
     id?: number;
     image?: string;
     publisher?: string;
     title?: string;
 }
+export namespace NewsDetailsDto {
+    export type GameEnum = 'CODMW' | 'DOTA2' | 'LOL' | 'VALORANT';
+    export const GameEnum = {
+        Codmw: 'CODMW' as GameEnum,
+        Dota2: 'DOTA2' as GameEnum,
+        Lol: 'LOL' as GameEnum,
+        Valorant: 'VALORANT' as GameEnum
+    };
+}
+
 

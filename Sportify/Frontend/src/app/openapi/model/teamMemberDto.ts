@@ -11,13 +11,14 @@
  */
 
 
-export interface NewsDto { 
-    date?: string;
-    description?: string;
-    game?: string;
-    id?: number;
-    image?: string;
-    publisher?: string;
-    title?: string;
+export interface TeamMemberDto { 
+    birthYear?: string;
+    birthday?: string;
+    firstName?: string;
+    hometown?: string;
+    imageUrl?: string;
+    lastName?: string;
+    name?: string;
+    nationality?: string;
 }
 

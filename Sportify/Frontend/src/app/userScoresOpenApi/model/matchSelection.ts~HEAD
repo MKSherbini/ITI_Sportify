@@ -11,13 +11,10 @@
  */
 
 
-export interface NewsDto { 
-    date?: string;
-    description?: string;
-    game?: string;
+export interface MatchSelection { 
     id?: number;
-    image?: string;
-    publisher?: string;
-    title?: string;
+    matchId?: number;
+    selectedTeamId?: number;
+    userEmail?: string;
 }
 

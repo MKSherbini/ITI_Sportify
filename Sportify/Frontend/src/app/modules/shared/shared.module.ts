@@ -11,6 +11,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 
+import {UserModule} from '../user/user.module';
 
 @NgModule({
   declarations: [

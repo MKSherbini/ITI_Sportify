@@ -19,7 +19,7 @@ const routes:Routes=[
     MatchesHistoryComponent,
   ],
   imports: [
-    CommonModule,SharedModule,RouterModule.forChild(routes)
+    CommonModule,SharedModule,RouterModule.forChild(routes),ReactiveFormsModule
   ]
 })
 export class UserModule { }

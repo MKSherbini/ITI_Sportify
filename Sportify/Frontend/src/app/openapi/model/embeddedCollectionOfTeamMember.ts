@@ -9,15 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { TeamMember } from './teamMember';
 
 
-export interface NewsDto { 
-    date?: string;
-    description?: string;
-    game?: string;
-    id?: number;
-    image?: string;
-    publisher?: string;
-    title?: string;
+/**
+ * Embedded collection of TeamMember
+ */
+export interface EmbeddedCollectionOfTeamMember { 
+    /**
+     * Resource collection
+     */
+    teamMembers: Array<TeamMember>;
 }
 
