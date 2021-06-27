@@ -1,6 +1,9 @@
 <!-- START: Breadcrumbs -->
+<div *ngIf="this.loadedData==3">
+
 <div class="nk-gap-1"></div>
-<div class="container">
+<div  class="container">
+  <span type="button" class="score btn btn-info">User Score: {{userScore}} </span>
   <ul class="nk-breadcrumbs">
 
 
@@ -12,6 +15,7 @@
     <li><span>Matches Results</span></li>
 
   </ul>
+
 </div>
 <div class="nk-gap-1"></div>
 <!-- END: Breadcrumbs -->
@@ -26,11 +30,14 @@
   <ul class="nk-breadcrumbs">
     <li><span>Previous Results</span></li>
   </ul>
+  <div class="nk-gap-1"></div>
 
   <div *ngFor="let matchAndResult of finishedMatches">
     <app-finished-matches [matchAndResult]=matchAndResult></app-finished-matches>
   </div>
 
 
+
+</div>
 
 </div>
