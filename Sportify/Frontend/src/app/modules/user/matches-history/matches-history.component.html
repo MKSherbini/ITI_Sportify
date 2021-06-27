@@ -20,47 +20,16 @@
   <div class="nk-gap"></div>
 
   <div *ngFor="let matchAndSelection of notFinishedMatches">
-    <div class="nk-match" *ngIf="true">
-      <div class="nk-match-team-left">
-        <a routerLink="/database/team/{{matchAndSelection.matchDto.teams[0].team.id}}">
-          <span class="nk-match-team-logo">
-            <img src="{{matchAndSelection.matchDto.teams[0].team.imageUrl}}" width="150" alt="">
-          </span>
-          <span class="nk-match-team-name">
-            {{matchAndSelection.matchDto.teams[0].team.name}} ({{matchAndSelection.matchDto.teams[0].team.acronym}})
-          </span>
-        </a>
-      </div>
-      <div class="nk-match-status">
-        <a>
-          <span class="nk-match-status-vs">VS</span>
-          <span class="nk-match-status-date">
-            {{matchAndSelection.matchDto.scheduledAt | date:'medium'}}
-          </span>
-          <span class="nk-match-score bg-secondary">{{matchAndSelection.matchDto.status}}</span>
-        </a>
-        <br>
-
-        <button disabled class="nk-match-score">You've already voted for <b>{{matchAndSelection.selectedTeam}}</b></button>
-
-      </div>
-      <div class="nk-match-team-right">
-        <a routerLink="/database/team/{{matchAndSelection.matchDto.teams[1].team.id}}">
-          <span class="nk-match-team-name">
-            {{matchAndSelection.matchDto.teams[1].team.name}} ({{matchAndSelection.matchDto.teams[1].team.acronym}})
-          </span>
-          <span class="nk-match-team-logo">
-            <img src="{{matchAndSelection.matchDto.teams[1].team.imageUrl}}" width="150" alt="">
-          </span>
-        </a>
-      </div>
-    </div>
-    <div class="nk-gap-2"></div>
+    <app-not-finished-matches [matchAndSelection]=matchAndSelection></app-not-finished-matches>
   </div>
 
   <ul class="nk-breadcrumbs">
     <li><span>Previous Results</span></li>
   </ul>
+
+  <div *ngFor="let matchAndResult of finishedMatches">
+    <app-finished-matches [matchAndResult]=matchAndResult></app-finished-matches>
+  </div>
 
 
 

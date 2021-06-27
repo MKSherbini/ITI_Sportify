@@ -1,0 +1,37 @@
+<div class="nk-match" *ngIf="true">
+  <div class="nk-match-team-left">
+    <a routerLink="/database/team/{{matchAndResult.matchDto.teams[0].team.id}}">
+      <span class="nk-match-team-logo">
+        <img src="{{matchAndResult.matchDto.teams[0].team.imageUrl}}" width="150" alt="">
+      </span>
+      <span class="nk-match-team-name">
+        {{matchAndResult.matchDto.teams[0].team.name}} ({{matchAndResult.matchDto.teams[0].team.acronym}})
+      </span>
+    </a>
+  </div>
+  <div class="nk-match-status">
+    <a>
+      <span class="nk-match-status-vs">VS</span>
+      <span class="nk-match-status-date">
+        {{matchAndResult.matchDto.scheduledAt | date:'medium'}}
+      </span>
+      <span class="nk-match-score bg-danger">{{matchAndResult.matchDto.teams[0].score}} : {{matchAndResult.matchDto.teams[1].score}}</span> <br>
+      <span class="nk-match-score bg-secondary">{{matchAndResult.matchDto.status}}</span>
+    </a>
+    <br>
+
+    <button disabled class="nk-match-score">You've already voted for <b>{{matchAndResult.selectedTeam}}</b></button>
+
+  </div>
+  <div class="nk-match-team-right">
+    <a routerLink="/database/team/{{matchAndResult.matchDto.teams[1].team.id}}">
+      <span class="nk-match-team-name">
+        {{matchAndResult.matchDto.teams[1].team.name}} ({{matchAndResult.matchDto.teams[1].team.acronym}})
+      </span>
+      <span class="nk-match-team-logo">
+        <img src="{{matchAndResult.matchDto.teams[1].team.imageUrl}}" width="150" alt="">
+      </span>
+    </a>
+  </div>
+</div>
+<div class="nk-gap-2"></div>
