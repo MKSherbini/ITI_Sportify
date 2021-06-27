@@ -5,11 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MatchesHistoryComponent } from './matches-history/matches-history.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
-const routes:Routes=[
-  {path:"history",component:MatchesHistoryComponent},
-  {path:"",component:LoginComponent},
-  {path:"register",component:RegistrationComponent},
+const routes: Routes = [
+  { path: "history", component: MatchesHistoryComponent },
+  { path: "", component: LoginComponent },
+  { path: "register", component: RegistrationComponent },
 ]
 
 @NgModule({
@@ -19,7 +22,10 @@ const routes:Routes=[
     MatchesHistoryComponent,
   ],
   imports: [
-    CommonModule,SharedModule,RouterModule.forChild(routes),ReactiveFormsModule
+    CommonModule, ReactiveFormsModule, RouterModule, HttpClientModule, FormsModule, MatButtonToggleModule
+    , RouterModule.forChild(routes)]
+  , exports: [
+    LoginComponent
   ]
 })
 export class UserModule { }
