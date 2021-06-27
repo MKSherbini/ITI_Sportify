@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { GamenewsComponent } from './gamenews/gamenews.component';
-import { AdminNewsComponent } from './admin-news/admin-news.component';
+import { AddnewsComponent } from './addnews/addnews.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 const routes: Routes = [
-  {path: 'add', component:AdminNewsComponent},
+  {path: "add", component:AddnewsComponent},
   {path: ':id', component: NewsDetailsComponent},
   {path:"",component:GamenewsComponent}
 ];
@@ -15,10 +16,10 @@ const routes: Routes = [
   declarations: [
     NewsDetailsComponent,
     GamenewsComponent,
-    AdminNewsComponent
+    AddnewsComponent
   ],
   imports: [
-    CommonModule, RouterModule.forChild(routes)
+    CommonModule,SharedModule, RouterModule.forChild(routes)
   ]
 })
 export class NewsModule { }
