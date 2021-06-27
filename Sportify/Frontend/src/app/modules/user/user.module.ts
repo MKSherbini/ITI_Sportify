@@ -9,7 +9,7 @@ import { MatchesHistoryComponent } from './matches-history/matches-history.compo
 const routes:Routes=[
   {path:"history",component:MatchesHistoryComponent},
   {path:"",component:LoginComponent},
-  {path:"Register",component:RegistrationComponent}
+  {path:"register",component:RegistrationComponent},
 ]
 
 @NgModule({
