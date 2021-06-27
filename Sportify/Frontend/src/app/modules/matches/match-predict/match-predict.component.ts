@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GamesControllerService, MatchDto, MatchEntityService } from 'src/app/openapi';
-import { GameDetailsControllerService } from 'src/app/openapi/api/gameDetailsController.service';
+import { GamesControllerService, MatchDto } from 'src/app/openapi';
 import { Selection } from 'src/app/models/Selection';
 import { UserPredictionService } from 'src/app/userScoresOpenApi';
 import { MatchSelectionDto } from 'src/app/models/MatchSelectionDto';

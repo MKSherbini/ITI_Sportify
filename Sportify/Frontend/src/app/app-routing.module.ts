@@ -35,6 +35,12 @@ const routes: Routes = [
     loadChildren: () => import('../app/modules/news/news.module').then(m => m.NewsModule)
     // ,  canActivate:[AuthGuard]
   },
+  {
+    path: 'database',
+    component: LayoutComponent,
+    loadChildren: () => import('../app/modules/database/database.module').then(m => m.DatabaseModule)
+    // ,  canActivate:[AuthGuard]
+  },
 ];
 
 @NgModule({

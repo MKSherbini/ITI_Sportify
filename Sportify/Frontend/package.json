@@ -10,6 +10,7 @@
     "e2e": "ng e2e",
     "generate:api": "openapi-generator-cli generate -g typescript-angular -i http://localhost:9866/v3/api-docs -o ./src/app/userScoresOpenApi",
     "generate:gamedetailsapi": "openapi-generator-cli generate -g typescript-angular -i http://localhost:9899/api/v3/api-docs -o ./src/app/openapi",
+    "generate:userapi": "openapi-generator-cli generate -g typescript-angular -i http://localhost:9865/v3/api-docs -o ./src/app/userOpenApi",
     "prestart": "npm run generate:api",
     "prebuild": "npm run generate:api"
   },

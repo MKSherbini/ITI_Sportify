@@ -12,6 +12,7 @@
 
 
 export interface NewsDto { 
+    content?: string;
     date?: string;
     description?: string;
     game?: string;
