@@ -10,6 +10,7 @@
     "e2e": "ng e2e",
     "generate:api": "openapi-generator-cli generate -g typescript-angular -i http://localhost:9866/v3/api-docs -o ./src/app/userScoresOpenApi",
     "generate:gamedetailsapi": "openapi-generator-cli generate -g typescript-angular -i http://localhost:9899/api/v3/api-docs -o ./src/app/openapi",
+    "generate:userapi": "openapi-generator-cli generate -g typescript-angular -i http://localhost:9865/v3/api-docs -o ./src/app/userOpenApi",
     "prestart": "npm run generate:api",
     "prebuild": "npm run generate:api"
   },
@@ -27,7 +28,9 @@
     "@angular/platform-browser": "~11.2.8",
     "@angular/platform-browser-dynamic": "~11.2.8",
     "@angular/router": "~11.2.8",
+    "@auth0/angular-jwt": "^5.0.2",
     "@openapitools/openapi-generator-cli": "^2.3.4",
+    "jwt-decode": "^3.1.2",
     "bootstrap": "^4.5.0",
     "rxjs": "~6.6.0",
     "swagger-angular-generator": "^4.2.2",

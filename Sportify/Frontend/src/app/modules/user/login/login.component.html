@@ -1,28 +1,90 @@
+<div class="nk-modal modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="ion-android-close"></span>
+        </button>
 
-<div class="card" >
-  <div class="card-body">
-      <h5 class="card-title">Login Form</h5>
-      <form [formGroup]="form">
-        <div>
-          <p *ngIf="invalid" class="alert-danger">Please enter a vaild email and password</p>
-        </div>
+        <h4 class="mb-0"><span class="text-main-1">Sign</span> In</h4>
 
-          <label>User Name</label>
-          <input formControlName="userName" class="form-control" type="text" id="UN01" required>
-          <label>Password</label>
+        <div class="nk-gap-1"></div>
+        <form [formGroup]="logInFormGroup" (ngSubmit)="OnSubmit()">
+          <div class="row vertical-gap">
+            <div class="col-md-6">
+              Use user name and password:
+              <div *ngIf="invalidMessage" class="alert alert-danger">{{invalidMessage}}</div>
+              <div formGroupName="admin">
+                <div class="input-group flex-nowrap ipu">
+                  <div class="input-group-prepend">
+                  </div>
+                  <input formControlName="userName" type="text" class="form-control" placeholder="userName"
+                         aria-label="userName" aria-describedby="addon-wrapping">
+                </div>
+                <div class="inv" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                  <div *ngIf="userName.errors.required || userName.errors.noOnlyWithSpace" class="alert alert-danger">
+                    UserName required
+                  </div>
+                  <div *ngIf="!userName.errors.noOnlyWithSpace && userName.errors.minlength" class="alert alert-danger">
+                    UserName must be more than 5 digts
+                  </div>
+                </div>
+                <div class="nk-gap"></div>
+                <div class="input-group flex-nowrap ipu">
+                  <div class="input-group-prepend">
+                  </div>
+                  <input formControlName="password" type="password" class="form-control" placeholder="Password"
+                         aria-label="Password" aria-describedby="addon-wrapping">
+                </div>
+                <div class="inv" *ngIf="password.invalid  && (password.dirty || password.touched)">
+                  <div *ngIf="password.errors.required" class="alert alert-danger">Password required</div>
+                  <div *ngIf="password.errors.minlength" class="alert alert-danger">Password must be more than 5 digts
+                  </div>
+                </div>
+                <div class="nk-gap"></div>
+              </div>
+              <div>
+                <button class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block"> Sign in</button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              Or social account:
 
+              <div class="nk-gap"></div>
 
-          <input formControlName="password" class="form-control" type="password" required>
-
-          <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="cb_01">
-              <label class="form-check-label" >Remember me</label>
+              <ul class="nk-social-links-2">
+                <li><a class="nk-social-facebook" href="#"><span class="fab fa-facebook"></span></a></li>
+                <li><a class="nk-social-google-plus" href="#"><span class="fab fa-google-plus"></span></a></li>
+                <li><a class="nk-social-twitter" href="#"><span class="fab fa-twitter"></span></a></li>
+              </ul>
+            </div>
           </div>
 
+          <div class="nk-gap-1"></div>
+          <div class="row vertical-gap">
 
-
-          <input class="btn btn-primary mt-4" type="submit" (click)="login()">
-      </form>
-
+            <div class="col-md-6">
+              <div class="mnt-5">
+                <small><a href="#">Forgot your password?</a></small>
+              </div>
+              <div class="mnt-5">
+                <small><a routerLink="signup">Not a member? Sign up</a></small>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
+
+<div class="nk-modal modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="ion-android-close"></span>
+        </button>
+
+        <h4 class="mb-0"><span class="text-main-1">Sign</span> In</h4>
+

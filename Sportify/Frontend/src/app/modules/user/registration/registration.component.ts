@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Login } from 'src/app/models/login';
 import { RegistrationDto } from 'src/app/models/RegistrationDto';
 import { RegistrationService } from 'src/app/services/registration.service';
+import { AuthenticatingEndPointService, UserDto, UsersResourceService } from 'src/app/userOpenApi';
 
 @Component({
   selector: 'app-registration',
@@ -12,19 +13,19 @@ import { RegistrationService } from 'src/app/services/registration.service';
 })
 export class RegistrationComponent implements OnInit {
   formGroup: FormGroup;
-  constructor(private _fb: FormBuilder, private _us: RegistrationService,private _router:Router) { }
+  constructor(private _fb: FormBuilder, private _usersResourceService: UsersResourceService,private _router:Router) { }
 
   ngOnInit(): void {
     this.formGroup = this._fb.group({
-      userName: ["aa", [Validators.minLength(6), Validators.required]],
-      email: ["bb", [Validators.email, Validators.required]],
-      password: ["cc", [Validators.minLength(6), Validators.required]]
+      userName: ["",[Validators.minLength(6), Validators.required]],
+      email: ["",[Validators.email, Validators.required,Validators.pattern("(.+)@(.+){2,}.(.+){2,}")]],
+      password: ["",[Validators.minLength(6), Validators.required]]
     })
   }
 
   saveUser() {
-    let registrationDto: RegistrationDto = this.formGroup.value;
-    this._us.registerUser(registrationDto).subscribe(e => {
+    let userDto: UserDto = this.formGroup.value;
+    this._usersResourceService.saveSelectedUsingPOST(userDto).subscribe(e => {
       console.log(e);
       console.log("success")
       this._router.navigateByUrl("/user")

@@ -8,18 +8,18 @@ import { Login } from '../models/login';
   providedIn: 'root'
 })
 export class LoginService {
-  logged:boolean=false;
-  authenticateUrl:string=environment.AuthenticateUrl;
-  jwt:string;
+  logged=false;
+  authenticateUrl:string =environment.AuthenticateUrl;
+  jwttoken:string;
   constructor(private _http:HttpClient) { }
 
-  login(obj:Login){
+  login(obj: Login){
      return this._http.post(this.authenticateUrl,obj);
   }
-  addToken(jwt:string){
-    localStorage.setItem('token',jwt);
+  addToken(jwttoken:string){
+    localStorage.setItem('token', jwttoken);
   }
-  removeToken(jwt:string){
+  removeToken(jwttoken:string){
     localStorage.removeItem('token');
   }
 

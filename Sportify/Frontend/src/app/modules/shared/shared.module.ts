@@ -7,10 +7,12 @@ import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeadComponent } from './head/head.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 
+import { UserModule } from '../user/user.module';
+import { NewsModule } from '../news/news.module';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     HeadComponent
   ],
   imports: [
-    CommonModule, RouterModule,HttpClientModule,ReactiveFormsModule,FormsModule,MatButtonToggleModule
+    CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, MatButtonToggleModule, UserModule, NewsModule
   ],
-  exports:[
+  exports: [
     HeaderComponent,
     HttpClientModule,
     ReactiveFormsModule,
