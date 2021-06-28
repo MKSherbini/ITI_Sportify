@@ -13,16 +13,19 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { UserModule } from '../user/user.module';
 import { NewsModule } from '../news/news.module';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     LayoutComponent,
     FooterComponent,
-    HeadComponent
+    HeadComponent,
+    DialogComponent
   ],
   imports: [
-    CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, MatButtonToggleModule, UserModule
+    CommonModule, RouterModule,MatDialogModule, HttpClientModule, ReactiveFormsModule, FormsModule, MatButtonToggleModule, UserModule
   ],
   exports: [
     HeaderComponent,
@@ -31,7 +34,8 @@ import { NewsModule } from '../news/news.module';
     FormsModule,
     FooterComponent,
     HeadComponent,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    DialogComponent
   ]
 })
 export class SharedModule { }

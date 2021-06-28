@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Login } from '../models/login';
@@ -25,7 +26,7 @@ export class AuthService {
     )
   }
 
-  constructor(private http: HttpClient, private authController: AuthenticatingEndPointService) {
+  constructor(private http: HttpClient, private authController: AuthenticatingEndPointService, private router:Router) {
     this.currentUserSubject = new BehaviorSubject<LoginUser>(JSON.parse(localStorage.getItem(this.userStorageKey)));
     console.log(this.getToken());
     console.log("User: " + JSON.stringify(this.currentUserValue));
@@ -48,27 +49,26 @@ export class AuthService {
       loginUser.userName = tokenObj["sub"];
       localStorage.setItem(this.userStorageKey, JSON.stringify(loginUser));
       this.currentUserSubject.next(loginUser);
-      console.log(this.getToken());
-      // console.log(this.isAuthenticated());
-      // console.log(this.isAdmin());
-      // this.logout();
-      // console.log(this.isAuthenticated());
-      // console.log(this.isAdmin());
+
+
+      if(this.isAdmin()){
+        window.location.href = '/news/add'
+
+      }else{
+        window.location.href = '/'
+        }
+
     });
 
-    // return this.http.post<any>("", loginUser, this.httpOptions) // todo real login here and set token + check login success
-    //   // .pipe(user => {
-    //   .subscribe(user => {
-    //     localStorage.setItem(this.userStorageKey, JSON.stringify(user));
-    //     this.currentUserSubject.next(user);
-    //     return user;
-    //   });
+
   }
 
   logout() {
     localStorage.removeItem(this.userStorageKey)
     localStorage.removeItem(this.tokenStorageKey)
     this.currentUserSubject.next(null);
+    window.location.href = '/'
+
   }
 
   public getToken(): string {

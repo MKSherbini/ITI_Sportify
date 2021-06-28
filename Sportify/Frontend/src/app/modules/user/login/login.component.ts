@@ -50,17 +50,7 @@ export class LoginComponent implements OnInit {
         password: this.logInFormGroup.get('admin').value.password
       }
       this.auth.login(user);
-      // executeAuthentication(this.logInFormGroup.get('admin').value.userName, this.logInFormGroup.get('admin').value.password)
-      //   .then(
-      //     data => {
-      //       this.route.navigateByUrl('/');
-      //     }, error => {
-      //       this.invalidMessage = 'Invalid UserName and Password';
-      //       this.showMessage();
-      //     }
-      //   );
-      console.log(this.logInFormGroup.get('admin').value.password);
-      console.log(this.logInFormGroup.get('admin').value.userName);
+     
     }
   }
   showMessage() {

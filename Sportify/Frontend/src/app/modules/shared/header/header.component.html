@@ -88,7 +88,7 @@
     <div class="container">
       <div class="nk-nav-table">
 
-        <a href="index.html" class="nk-nav-logo">
+        <a routerLink="/" class="nk-nav-logo">
           <img src="/assets/images/logo.png" alt="GoodGames" width="199">
         </a>
 
@@ -100,8 +100,11 @@
           <li>
             <a routerLink="/news">News</a>
           </li>
-          <li>
+          <li *ngIf="isUser">
             <a routerLink="/user/history">Predictions</a>
+          </li>
+          <li *ngIf="isAdmin">
+            <a routerLink="/news/add">Add news</a>
           </li>
         </ul>
         <ul class="nk-nav nk-nav-right nk-nav-icons">

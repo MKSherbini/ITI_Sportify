@@ -5,6 +5,8 @@ import { Login } from 'src/app/models/login';
 import { RegistrationDto } from 'src/app/models/RegistrationDto';
 import { RegistrationService } from 'src/app/services/registration.service';
 import { AuthenticatingEndPointService, UserDto, UsersResourceService } from 'src/app/userOpenApi';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { DialogboxComponent } from '../dialogbox/dialogbox.component';
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +15,7 @@ import { AuthenticatingEndPointService, UserDto, UsersResourceService } from 'sr
 })
 export class RegistrationComponent implements OnInit {
   formGroup: FormGroup;
-  constructor(private _fb: FormBuilder, private _usersResourceService: UsersResourceService,private _router:Router) { }
+  constructor(public dialog: MatDialog,private _fb: FormBuilder, private _usersResourceService: UsersResourceService,private _router:Router) { }
 
   ngOnInit(): void {
     this.formGroup = this._fb.group({
@@ -26,13 +28,24 @@ export class RegistrationComponent implements OnInit {
   saveUser() {
     let userDto: UserDto = this.formGroup.value;
     this._usersResourceService.saveSelectedUsingPOST(userDto).subscribe(e => {
-      console.log(e);
-      console.log("success")
-      this._router.navigateByUrl("/user")
+
+      this.openDialog("Thanks for registration")
+      this._router.navigateByUrl("/")
+
     },
       e => {
         console.log("error")
       });
   }
 
+  openDialog(msg:string) {
+   this.dialog.open(DialogboxComponent, {
+      data: {name: "Registration", msg: msg}
+    });
+  }
 }
+function DialogElementsExampleDialog(DialogElementsExampleDialog: any) {
+
+  throw new Error('Function not implemented.');
+}
+

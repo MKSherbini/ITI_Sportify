@@ -42,12 +42,15 @@
 
   </div>
     <div class="tab-content">
+      <div class="nk-gap"></div>
+      <select class="select bg-dark filter text-white" [(ngModel)]="selectedFilter" (ngModelChange)="changeMatches()" >
+        <option value="Show All" selected>Show All</option>
+        <option value="Finished">Finished</option>
+        <option value="Not Started">Not Started</option>
+      </select>
+      <div class="nk-gap"></div>
         <div class="nk-gap"></div>
-        <select class="select bg-dark filter text-white" [(ngModel)]="selectedFilter" (ngModelChange)="changeMatches()" >
-          <option value="Show All" selected>Show All</option>
-          <option value="Finished">Finished</option>
-          <option value="Not Started">Not Started</option>
-        </select>
+
 
 
         <!-- <mat-button-toggle-group (valueChange)="changeMatches()" [(ngModel)]="selectedFilter" name="matchesGroup">

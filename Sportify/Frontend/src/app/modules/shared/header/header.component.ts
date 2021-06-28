@@ -13,11 +13,15 @@ import { AuthService } from 'src/app/auth/auth.service';
 
 export class HeaderComponent implements OnInit {
   logged: boolean;
+  isUser:boolean;
+  isAdmin:boolean;
 
   constructor(private user: LoginService,private _as:AuthService) { }
 
   ngOnInit(): void {
      this.logged= this._as.isAuthenticated();
+     this.isUser=this._as.isUser();
+     this.isAdmin=this._as.isAdmin();
   }
 
   logout(){

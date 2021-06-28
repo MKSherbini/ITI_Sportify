@@ -21,7 +21,7 @@
     <app-prediction-slider *ngIf="!isSelectedBefore" (eventEmiitter)="onChange($event)" [team01]="match.teams[0]" [team02]="match.teams[1]"></app-prediction-slider>
 
     <button *ngIf="!isSelectedBefore" [disabled]="!selected" class="nk-match-score" (click)="sendPrediction()" >Submit</button>
-    <button *ngIf="isSelectedBefore" disabled class="nk-match-score">You've already voted for <b>{{previousSelectionInDB}}</b></button>
+    <button *ngIf="isSelectedBefore" disabled class="nk-match-score">You've already voted: <b>{{previousSelectionInDB}}</b></button>
 
   </div>
   <div class="nk-match-team-right">

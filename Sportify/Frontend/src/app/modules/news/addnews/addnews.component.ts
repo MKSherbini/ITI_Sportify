@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { News, NewsControllerService, NewsDto } from 'src/app/openapi';
+import { DialogComponent } from '../../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-addnews',
@@ -12,7 +14,7 @@ export class AddnewsComponent implements OnInit {
   news: NewsDto;
   addedNews: News;
   formGroup: FormGroup;
-  constructor(private fb: FormBuilder, private newsService: NewsControllerService) { }
+  constructor(public dialog: MatDialog,private fb: FormBuilder, private newsService: NewsControllerService) { }
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -30,10 +32,19 @@ export class AddnewsComponent implements OnInit {
       this.news = this.formGroup.value;
       this.newsService.addNewsUsingPOST(this.news).subscribe(n=>{
           this.addedNews = n;
-      })
+          this.openDialog("news Added")
+          this.formGroup.reset();
+            })
+
+
   }
 
-  
+
+  openDialog(msg:string) {
+    this.dialog.open(DialogComponent, {
+       data: {name: "Adding news", msg: msg}
+     });
+   }
 
 
 }

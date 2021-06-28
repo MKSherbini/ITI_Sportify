@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GamesControllerService, MatchDto } from 'src/app/openapi';
 import { Selection } from 'src/app/models/Selection';
 import { UserPredictionService } from 'src/app/userScoresOpenApi';
 import { MatchSelectionDto } from 'src/app/models/MatchSelectionDto';
 import { MatchesControllerService } from 'src/app/openapi/api/matchesController.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-match-predict',
@@ -20,7 +22,7 @@ export class MatchPredictComponent implements OnInit {
   loaded:boolean=false;
   previousSelectionInDB:string;
   userEmail:string;
-  constructor(private _as:AuthService,private _userScoresService: UserPredictionService, private _activatedRoute: ActivatedRoute, private _matchService: MatchesControllerService) {
+  constructor(private _router: Router,public dialog: MatDialog,private _as:AuthService,private _userScoresService: UserPredictionService, private _activatedRoute: ActivatedRoute, private _matchService: MatchesControllerService) {
   }
 
   ngOnInit(): void {
@@ -54,6 +56,10 @@ export class MatchPredictComponent implements OnInit {
   sendPrediction() {
    //TODO add Token to the request header
     this._userScoresService.saveSelectionUsingPOST(this. getSelectionDtoWithTeam()).subscribe(r => {
+
+      this.openDialog("Prediction saved, Wait until the match finished and you will get the results ;) ");
+      this.isSelectedBefore=true;
+      // this._router.navigate(['/matches']);
     });
   }
 
@@ -89,5 +95,12 @@ export class MatchPredictComponent implements OnInit {
     selectedPrediction.userEmail=this.userEmail;
     return selectedPrediction;
   }
+
+
+  openDialog(msg:string) {
+    this.dialog.open(DialogComponent, {
+       data: {name: "Prediction", msg: msg}
+     });
+   }
 
 }

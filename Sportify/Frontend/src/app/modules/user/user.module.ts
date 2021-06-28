@@ -13,6 +13,8 @@ import { NotFinishedMatchesComponent } from './not-finished-matches/not-finished
 import { UserGuard } from 'src/app/guards/user.guard';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { LoginscreenComponent } from './loginscreen/loginscreen.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogboxComponent } from './dialogbox/dialogbox.component';
 
 const routes: Routes = [
   { path: "history", component: MatchesHistoryComponent, canActivate: [AuthGuard, UserGuard] },
@@ -27,10 +29,11 @@ const routes: Routes = [
     MatchesHistoryComponent,
     FinishedMatchesComponent,
     NotFinishedMatchesComponent,
-    LoginscreenComponent
+    LoginscreenComponent,
+    DialogboxComponent,
   ],
   imports: [
-    CommonModule, ReactiveFormsModule, RouterModule, HttpClientModule, FormsModule, MatButtonToggleModule, RouterModule.forChild(routes)
+    CommonModule, ReactiveFormsModule, RouterModule, HttpClientModule, FormsModule, MatButtonToggleModule,MatDialogModule, RouterModule.forChild(routes)
   ], exports: [LoginComponent]
 })
 export class UserModule { }
