@@ -76,7 +76,7 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return !!this.currentUserValue;
+    return !(!this.currentUserValue);
     // const token = this.getToken();
     // return tokenNotExpired(null, token);
   }
