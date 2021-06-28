@@ -22,7 +22,7 @@ import { NewsModule } from '../news/news.module';
     HeadComponent
   ],
   imports: [
-    CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, MatButtonToggleModule, UserModule, NewsModule
+    CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, MatButtonToggleModule, UserModule
   ],
   exports: [
     HeaderComponent,
