@@ -11,7 +11,7 @@
         <div class="nk-gap-1"></div>
         <form [formGroup]="logInFormGroup" (ngSubmit)="OnSubmit()">
           <div class="row vertical-gap">
-            <div class="col-md-6">
+            <div class="col-md-12">
               Use user name and password:
               <div *ngIf="invalidMessage" class="alert alert-danger">{{invalidMessage}}</div>
               <div formGroupName="admin">
@@ -26,7 +26,7 @@
                     UserName required
                   </div>
                   <div *ngIf="!userName.errors.noOnlyWithSpace && userName.errors.minlength" class="alert alert-danger">
-                    UserName must be more than 5 digts
+                    UserName must be more than 5 chars
                   </div>
                 </div>
                 <div class="nk-gap"></div>
@@ -47,7 +47,7 @@
                 <button class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block"> Sign in</button>
               </div>
             </div>
-            
+
           </div>
 
           <div class="nk-gap-1"></div>
