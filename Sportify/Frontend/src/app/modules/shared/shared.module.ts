@@ -12,6 +12,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 import { UserModule } from '../user/user.module';
+import { NewsModule } from '../news/news.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { UserModule } from '../user/user.module';
     HeadComponent
   ],
   imports: [
-    CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, MatButtonToggleModule, UserModule
+    CommonModule, RouterModule, HttpClientModule, ReactiveFormsModule, FormsModule, MatButtonToggleModule, UserModule, NewsModule
   ],
   exports: [
     HeaderComponent,
