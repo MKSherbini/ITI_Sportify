@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 import { MatchAndResult } from 'src/app/models/MatchAndResult';
 import { MatchAndSelection } from 'src/app/models/MatchAndSelection';
 import { MatchSelectionDto } from 'src/app/models/MatchSelectionDto';
@@ -18,21 +19,24 @@ export class MatchesHistoryComponent implements OnInit {
   notFinishedMatches: MatchAndSelection[]=[];
   userScore:number;
   loadedData:number=0;
-  constructor(private _matchService: MatchesControllerService, private _matchesRresource: MatchesResourceService, private _us:UserPredictionService) { }
+  userEmail:string;
+
+  constructor(private _as:AuthService,private _matchService: MatchesControllerService, private _matchesRresource: MatchesResourceService, private _us:UserPredictionService) { }
 
   ngOnInit(): void {
+    this.userEmail=this._as.currentUserValue.email;
     //TODO get User Email form Login Service
-    this._matchesRresource.getFinishedMatchesUsingGET("Test").subscribe(r => {
+    this._matchesRresource.getFinishedMatchesUsingGET(this.userEmail).subscribe(r => {
       this.getFinishedMatches(r as MatchResultHistoryDto[]);
         this.loadedData++;
     });
-    this._matchesRresource.getNotFinishedMatchesUsingGET("Test").subscribe(r => {
+    this._matchesRresource.getNotFinishedMatchesUsingGET(this.userEmail).subscribe(r => {
       console.log(r)
       this.getNotFinishedMatches(r as MatchSelectionDto[]);
       this.loadedData++;
     })
 
-    this._us.getUserScoreUsingGET("Test").subscribe(r=>{
+    this._us.getUserScoreUsingGET(this.userEmail).subscribe(r=>{
         this.userScore=r;
         this.loadedData++;
     })

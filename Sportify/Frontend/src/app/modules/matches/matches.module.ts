@@ -9,10 +9,12 @@ import { MatchPredictComponent } from './match-predict/match-predict.component';
 import { PredictionSliderComponent } from './prediction-slider/prediction-slider.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { SharedModule } from '../shared/shared.module';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+import { UserGuard } from 'src/app/guards/user.guard';
 
 const routes: Routes = [
   { path: "", component: MatchesListComponent },
-  { path: ":id", component: MatchPredictComponent },
+  { path: ":id", component: MatchPredictComponent, canActivate: [AuthGuard, UserGuard] },
 ]
 
 @NgModule({
@@ -23,7 +25,7 @@ const routes: Routes = [
     PredictionSliderComponent,
   ],
   imports: [
-    CommonModule, HttpClientModule, ReactiveFormsModule, FormsModule, RouterModule.forChild(routes),NgxSliderModule,SharedModule
+    CommonModule, HttpClientModule, ReactiveFormsModule, FormsModule, RouterModule.forChild(routes), NgxSliderModule, SharedModule
   ],
   exports: [
     HttpClientModule,

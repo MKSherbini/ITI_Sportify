@@ -1,20 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, Routes } from '@angular/router';
-import { Spacevalidator } from '../../../models/spacevalidator';
-import { AuthenticationService } from '../../../services/authentication.service';
-import 'rxjs/add/operator/toPromise';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { LoginUser } from 'src/app/models/LoginUser';
+import { Spacevalidator } from 'src/app/models/spacevalidator';
 import { AuthenticationRequest } from 'src/app/userOpenApi';
 
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-loginscreen',
+  templateUrl: './loginscreen.component.html',
+  styleUrls: ['./loginscreen.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginscreenComponent implements OnInit {
 
   logInFormGroup: FormGroup;
   invalidMessage: string;

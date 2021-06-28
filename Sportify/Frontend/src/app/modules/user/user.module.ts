@@ -10,10 +10,14 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { LoginComponent } from './login/login.component';
 import { FinishedMatchesComponent } from './finished-matches/finished-matches.component';
 import { NotFinishedMatchesComponent } from './not-finished-matches/not-finished-matches.component';
+import { UserGuard } from 'src/app/guards/user.guard';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+import { LoginscreenComponent } from './loginscreen/loginscreen.component';
 
 const routes: Routes = [
-  { path: "history", component: MatchesHistoryComponent },
+  { path: "history", component: MatchesHistoryComponent, canActivate: [AuthGuard, UserGuard] },
   { path: "register", component: RegistrationComponent },
+  { path: "login", component: LoginscreenComponent }
 ]
 
 @NgModule({
@@ -22,7 +26,8 @@ const routes: Routes = [
     LoginComponent,
     MatchesHistoryComponent,
     FinishedMatchesComponent,
-    NotFinishedMatchesComponent
+    NotFinishedMatchesComponent,
+    LoginscreenComponent
   ],
   imports: [
     CommonModule, ReactiveFormsModule, RouterModule, HttpClientModule, FormsModule, MatButtonToggleModule, RouterModule.forChild(routes)

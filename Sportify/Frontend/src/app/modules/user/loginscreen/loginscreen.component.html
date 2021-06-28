@@ -1,0 +1,60 @@
+<div class="modal-body">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span class="ion-android-close"></span>
+  </button>
+
+  <h4 class="mb-0"><span class="text-main-1">Sign</span> In</h4>
+
+  <div class="nk-gap-1"></div>
+  <form [formGroup]="logInFormGroup" (ngSubmit)="OnSubmit()">
+    <div class="row vertical-gap">
+      <div class="col-md-12">
+        Use user name and password:
+        <div *ngIf="invalidMessage" class="alert alert-danger">{{invalidMessage}}</div>
+        <div formGroupName="admin">
+          <div class="input-group flex-nowrap ipu">
+            <div class="input-group-prepend">
+            </div>
+            <input formControlName="userName" type="text" class="form-control" placeholder="userName"
+                   aria-label="userName" aria-describedby="addon-wrapping">
+          </div>
+          <div class="inv" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+            <div *ngIf="userName.errors.required || userName.errors.noOnlyWithSpace" class="alert alert-danger">
+              UserName required
+            </div>
+            <div *ngIf="!userName.errors.noOnlyWithSpace && userName.errors.minlength" class="alert alert-danger">
+              UserName must be more than 5 chars
+            </div>
+          </div>
+          <div class="nk-gap"></div>
+          <div class="input-group flex-nowrap ipu">
+            <div class="input-group-prepend">
+            </div>
+            <input formControlName="password" type="password" class="form-control" placeholder="Password"
+                   aria-label="Password" aria-describedby="addon-wrapping">
+          </div>
+          <div class="inv" *ngIf="password.invalid  && (password.dirty || password.touched)">
+            <div *ngIf="password.errors.required" class="alert alert-danger">Password required</div>
+            <div *ngIf="password.errors.minlength" class="alert alert-danger">Password must be more than 5 digts
+            </div>
+          </div>
+          <div class="nk-gap"></div>
+        </div>
+        <div style="margin-left: 42%;">
+          <button class="nk-btn nk-btn-rounded nk-btn-color-white nk-btn-block col-md-4"> Sign in</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="nk-gap-1"></div>
+    <div class="row vertical-gap">
+
+      <div class="col-md-6">
+        <div class="mnt-5">
+          <small><a routerLink="/user/register">Not a member? Sign up</a></small>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

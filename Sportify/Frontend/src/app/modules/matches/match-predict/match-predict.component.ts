@@ -5,6 +5,7 @@ import { Selection } from 'src/app/models/Selection';
 import { UserPredictionService } from 'src/app/userScoresOpenApi';
 import { MatchSelectionDto } from 'src/app/models/MatchSelectionDto';
 import { MatchesControllerService } from 'src/app/openapi/api/matchesController.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-match-predict',
@@ -18,10 +19,12 @@ export class MatchPredictComponent implements OnInit {
   isSelectedBefore:boolean=false;
   loaded:boolean=false;
   previousSelectionInDB:string;
-  constructor(private _userScoresService: UserPredictionService, private _activatedRoute: ActivatedRoute, private _matchService: MatchesControllerService) {
+  userEmail:string;
+  constructor(private _as:AuthService,private _userScoresService: UserPredictionService, private _activatedRoute: ActivatedRoute, private _matchService: MatchesControllerService) {
   }
 
   ngOnInit(): void {
+    this.userEmail=this._as.currentUserValue.email;
     this._activatedRoute.paramMap.subscribe(params => {
       let id: number = +params.get("id");
       this._matchService.getMatchUsingGET(id).subscribe(e => {
@@ -51,7 +54,6 @@ export class MatchPredictComponent implements OnInit {
   sendPrediction() {
    //TODO add Token to the request header
     this._userScoresService.saveSelectionUsingPOST(this. getSelectionDtoWithTeam()).subscribe(r => {
-      console.log("done done done ")
     });
   }
 
@@ -77,14 +79,14 @@ export class MatchPredictComponent implements OnInit {
 
     selectedPrediction.matchId=this.match.id;
     //TODO get user email from the principal
-    selectedPrediction.userEmail="Test";
+    selectedPrediction.userEmail=this.userEmail;
     return selectedPrediction;
   }
   getSelectionDto():MatchSelectionDto{
     let selectedPrediction: MatchSelectionDto=new MatchSelectionDto;
     selectedPrediction.matchId=this.match.id;
     //TODO get user email from the principal
-    selectedPrediction.userEmail="Test";
+    selectedPrediction.userEmail=this.userEmail;
     return selectedPrediction;
   }
 
