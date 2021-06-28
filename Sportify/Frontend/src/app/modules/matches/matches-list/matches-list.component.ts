@@ -17,7 +17,7 @@ export class MatchesListComponent implements OnInit {
   constructor(private gamesService: GamesControllerService) { }
 
   ngOnInit(): void {
-   
+
 
     this.gamesService.getGameMatchesUsingGET(Game.CodeNameEnum.Lol).subscribe(ret => {
 
@@ -57,6 +57,7 @@ export class MatchesListComponent implements OnInit {
   }
 
   changeMatches(){
+    console.log(this.selectedFilter);
     switch(this.selectedFilter){
       case "Show All":
         this.shownMatches=this.latestMatches;

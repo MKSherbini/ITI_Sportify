@@ -39,18 +39,24 @@
       </li>
 
     </ul>
+
+  </div>
     <div class="tab-content">
-      <div role="tabpanel" class="tab-pane fade show active" id="tabs-1-1">
         <div class="nk-gap"></div>
+        <select class="select bg-dark filter text-white" [(ngModel)]="selectedFilter" (ngModelChange)="changeMatches()" >
+          <option value="Show All" selected>Show All</option>
+          <option value="Finished">Finished</option>
+          <option value="Not Started">Not Started</option>
+        </select>
 
 
-        <mat-button-toggle-group (valueChange)="changeMatches()" [(ngModel)]="selectedFilter" name="matchesGroup">
+        <!-- <mat-button-toggle-group (valueChange)="changeMatches()" [(ngModel)]="selectedFilter" name="matchesGroup">
           <mat-button-toggle value="Show All">Show All</mat-button-toggle>
           <mat-button-toggle value="Finished">Finished</mat-button-toggle>
           <mat-button-toggle value="Not Started">Not Started</mat-button-toggle>
-        </mat-button-toggle-group>
+        </mat-button-toggle-group> -->
 
         <div *ngFor="let match of shownMatches">
           <app-match [match]="match"></app-match>
         </div>
-      </div>
+</div>
