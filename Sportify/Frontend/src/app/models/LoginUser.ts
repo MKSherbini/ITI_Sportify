@@ -1,4 +1,5 @@
 export class LoginUser {
   public userName:string;
-  public password:string;
+  public email:string;
+  public role:string;
 }

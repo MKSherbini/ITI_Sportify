@@ -6,6 +6,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
 import 'rxjs/add/operator/toPromise';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LoginUser } from 'src/app/models/LoginUser';
+import { AuthenticationRequest } from 'src/app/userOpenApi';
 
 
 @Component({
@@ -44,9 +45,10 @@ export class LoginComponent implements OnInit {
     if (this.logInFormGroup.invalid) {
       this.logInFormGroup.markAllAsTouched();
     } else {
-      var user: LoginUser = new LoginUser();
-      user.userName = this.logInFormGroup.get('admin').value.userName;
-      user.password = this.logInFormGroup.get('admin').value.password;
+      var user: AuthenticationRequest = {
+        userName: this.logInFormGroup.get('admin').value.userName,
+        password: this.logInFormGroup.get('admin').value.password
+      }
       this.auth.login(user);
       // executeAuthentication(this.logInFormGroup.get('admin').value.userName, this.logInFormGroup.get('admin').value.password)
       //   .then(

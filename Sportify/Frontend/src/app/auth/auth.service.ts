@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Login } from '../models/login';
 import { LoginUser } from '../models/LoginUser';
-import { AuthenticatingEndPointService } from '../userOpenApi';
+import { AuthenticatingEndPointService, AuthenticationRequest } from '../userOpenApi';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
 
   private userStorageKey: string = 'sb';
   private tokenStorageKey: string = 'st';
+  private jwtHelper = new JwtHelperService();
 
   httpOptions = {
     headers: new HttpHeaders(
@@ -26,6 +28,7 @@ export class AuthService {
   constructor(private http: HttpClient, private authController: AuthenticatingEndPointService) {
     this.currentUserSubject = new BehaviorSubject<LoginUser>(JSON.parse(localStorage.getItem(this.userStorageKey)));
     console.log(this.getToken());
+    console.log("User: " + JSON.stringify(this.currentUserValue));
     console.log("isAuthenticated: " + this.isAuthenticated());
     console.log("isUser: " + this.isUser());
     console.log("isAdmin: " + this.isAdmin());
@@ -35,9 +38,14 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  login(loginUser: LoginUser) {
-    this.authController.getAuthenticationTokenUsingPOST(loginUser).subscribe(token => {
+  login(authUser: AuthenticationRequest) {
+    this.authController.getAuthenticationTokenUsingPOST(authUser).subscribe(token => {
       localStorage.setItem(this.tokenStorageKey, JSON.stringify(token["jwt"]));
+      let loginUser: LoginUser = new LoginUser();
+      let tokenObj = this.jwtHelper.decodeToken(this.getToken());
+      loginUser.email = tokenObj["email"];
+      loginUser.role = tokenObj["role"];
+      loginUser.userName = tokenObj["sub"];
       localStorage.setItem(this.userStorageKey, JSON.stringify(loginUser));
       this.currentUserSubject.next(loginUser);
       console.log(this.getToken());
@@ -74,7 +82,7 @@ export class AuthService {
   }
 
   public isAdmin(): boolean {
-    return this.isAuthenticated() && this.currentUserValue.userName === "admin";
+    return this.isAuthenticated() && (this.currentUserValue.role === "ADMIN_ROLE" || this.currentUserValue.userName === "admin");
   }
 
   public isUser(): boolean {
