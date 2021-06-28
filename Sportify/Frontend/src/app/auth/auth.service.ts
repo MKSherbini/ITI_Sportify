@@ -25,6 +25,10 @@ export class AuthService {
 
   constructor(private http: HttpClient, private authController: AuthenticatingEndPointService) {
     this.currentUserSubject = new BehaviorSubject<LoginUser>(JSON.parse(localStorage.getItem(this.userStorageKey)));
+    console.log(this.getToken());
+    console.log("isAuthenticated: " + this.isAuthenticated());
+    console.log("isUser: " + this.isUser());
+    console.log("isAdmin: " + this.isAdmin());
   }
 
   public get currentUserValue(): LoginUser {
@@ -32,10 +36,16 @@ export class AuthService {
   }
 
   login(loginUser: LoginUser) {
-    console.log(loginUser);
     this.authController.getAuthenticationTokenUsingPOST(loginUser).subscribe(token => {
-      localStorage.setItem(this.userStorageKey, JSON.stringify(token));
+      localStorage.setItem(this.tokenStorageKey, JSON.stringify(token["jwt"]));
+      localStorage.setItem(this.userStorageKey, JSON.stringify(loginUser));
       this.currentUserSubject.next(loginUser);
+      console.log(this.getToken());
+      // console.log(this.isAuthenticated());
+      // console.log(this.isAdmin());
+      // this.logout();
+      // console.log(this.isAuthenticated());
+      // console.log(this.isAdmin());
     });
 
     // return this.http.post<any>("", loginUser, this.httpOptions) // todo real login here and set token + check login success
@@ -64,7 +74,11 @@ export class AuthService {
   }
 
   public isAdmin(): boolean {
-    return this.currentUserValue.userName === "admin";
+    return this.isAuthenticated() && this.currentUserValue.userName === "admin";
+  }
+
+  public isUser(): boolean {
+    return this.isAuthenticated() && !this.isAdmin();
   }
 
 }

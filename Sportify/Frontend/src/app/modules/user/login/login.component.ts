@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     if (this.logInFormGroup.invalid) {
       this.logInFormGroup.markAllAsTouched();
     } else {
-      var user: LoginUser;
+      var user: LoginUser = new LoginUser();
       user.userName = this.logInFormGroup.get('admin').value.userName;
       user.password = this.logInFormGroup.get('admin').value.password;
       this.auth.login(user);
