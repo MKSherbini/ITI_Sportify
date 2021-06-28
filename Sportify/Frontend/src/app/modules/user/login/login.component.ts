@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router, Routes} from '@angular/router';
-import {Spacevalidator} from '../../../models/spacevalidator';
-import {AuthenticationService} from '../../../services/authentication.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router, Routes } from '@angular/router';
+import { Spacevalidator } from '../../../models/spacevalidator';
+import { AuthenticationService } from '../../../services/authentication.service';
 import 'rxjs/add/operator/toPromise';
+import { AuthService } from 'src/app/auth/auth.service';
+import { LoginUser } from 'src/app/models/LoginUser';
 
 
 @Component({
@@ -17,9 +19,9 @@ export class LoginComponent implements OnInit {
   invalidMessage: string;
 
   constructor(private formBuilder: FormBuilder,
-              // private loginService: LoginService,
-              private auth: AuthenticationService,
-              private route: Router) { }
+    // private loginService: LoginService,
+    private auth: AuthService,
+    private route: Router) { }
 
   ngOnInit(): void {
     this.logInFormGroup = this.formBuilder.group({
@@ -32,30 +34,34 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get userName(){
+  get userName() {
     return this.logInFormGroup.get('admin.userName');
   }
-  get password(){
+  get password() {
     return this.logInFormGroup.get('admin.password');
   }
   OnSubmit() {
-    if (this.logInFormGroup.invalid){
+    if (this.logInFormGroup.invalid) {
       this.logInFormGroup.markAllAsTouched();
     } else {
-      this.auth.executeAuthentication(this.logInFormGroup.get('admin').value.userName, this.logInFormGroup.get('admin').value.password)
-        .then(
-          data => {
-            this.route.navigateByUrl('/');
-          }, error => {
-            this.invalidMessage = 'Invalid UserName and Password';
-            this.showMessage();
-          }
-        );
+      var user: LoginUser;
+      user.userName = this.logInFormGroup.get('admin').value.userName;
+      user.password = this.logInFormGroup.get('admin').value.password;
+      this.auth.login(user);
+      // executeAuthentication(this.logInFormGroup.get('admin').value.userName, this.logInFormGroup.get('admin').value.password)
+      //   .then(
+      //     data => {
+      //       this.route.navigateByUrl('/');
+      //     }, error => {
+      //       this.invalidMessage = 'Invalid UserName and Password';
+      //       this.showMessage();
+      //     }
+      //   );
       console.log(this.logInFormGroup.get('admin').value.password);
       console.log(this.logInFormGroup.get('admin').value.userName);
     }
   }
-  showMessage(){
+  showMessage() {
     setTimeout(() => {
       this.invalidMessage = '';
     }, 3000);

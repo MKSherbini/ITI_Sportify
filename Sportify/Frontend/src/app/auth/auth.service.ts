@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Login } from '../models/login';
 import { LoginUser } from '../models/LoginUser';
+import { AuthenticatingEndPointService } from '../userOpenApi';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,7 @@ export class AuthService {
     )
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authController: AuthenticatingEndPointService) {
     this.currentUserSubject = new BehaviorSubject<LoginUser>(JSON.parse(localStorage.getItem(this.userStorageKey)));
   }
 
@@ -30,13 +32,19 @@ export class AuthService {
   }
 
   login(loginUser: LoginUser) {
-    return this.http.post<any>("", loginUser, this.httpOptions) // todo real login here and set token + check login success
-      // .pipe(user => {
-      .subscribe(user => {
-        localStorage.setItem(this.userStorageKey, JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        return user;
-      });
+    console.log(loginUser);
+    this.authController.getAuthenticationTokenUsingPOST(loginUser).subscribe(token => {
+      localStorage.setItem(this.userStorageKey, JSON.stringify(token));
+      this.currentUserSubject.next(loginUser);
+    });
+
+    // return this.http.post<any>("", loginUser, this.httpOptions) // todo real login here and set token + check login success
+    //   // .pipe(user => {
+    //   .subscribe(user => {
+    //     localStorage.setItem(this.userStorageKey, JSON.stringify(user));
+    //     this.currentUserSubject.next(user);
+    //     return user;
+    //   });
   }
 
   logout() {
@@ -54,6 +62,7 @@ export class AuthService {
     // const token = this.getToken();
     // return tokenNotExpired(null, token);
   }
+
   public isAdmin(): boolean {
     return this.currentUserValue.userName === "admin";
   }
