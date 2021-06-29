@@ -31,6 +31,7 @@ export class AddnewsComponent implements OnInit {
   onSubmit(): void{
       this.news = this.formGroup.value;
       this.newsService.addNewsUsingPOST(this.news).subscribe(n=>{
+        console.log(n.image);
           this.addedNews = n;
           this.openDialog("news Added")
           this.formGroup.reset();

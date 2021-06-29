@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   logged: boolean;
   isUser:boolean;
   isAdmin:boolean;
+  userName: string;
 
   constructor(private user: LoginService,private _as:AuthService) { }
 
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
      this.logged= this._as.isAuthenticated();
      this.isUser=this._as.isUser();
      this.isAdmin=this._as.isAdmin();
+     this.userName=this._as.currentUserValue.userName.toUpperCase();
   }
 
   logout(){

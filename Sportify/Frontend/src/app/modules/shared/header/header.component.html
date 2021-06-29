@@ -16,6 +16,7 @@
         <ul class="nk-contacts-icons">
 
           <li *ngIf="logged" >
+            Hello, {{userName}}
             <button (click)="logout()" class="nk-btn nk-btn-rounded nk-btn-color-white">
               <span>Log Out</span>
               <span class="icon"><i class="ion-paper-airplane"></i></span>
