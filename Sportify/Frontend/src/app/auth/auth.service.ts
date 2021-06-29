@@ -26,7 +26,7 @@ export class AuthService {
     )
   }
 
-  constructor(private http: HttpClient, private authController: AuthenticatingEndPointService, private router:Router) {
+  constructor(private http: HttpClient, private authController: AuthenticatingEndPointService, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<LoginUser>(JSON.parse(localStorage.getItem(this.userStorageKey)));
     console.log(this.getToken());
     console.log("User: " + JSON.stringify(this.currentUserValue));
@@ -41,7 +41,7 @@ export class AuthService {
 
   login(authUser: AuthenticationRequest) {
     this.authController.getAuthenticationTokenUsingPOST(authUser).subscribe(token => {
-      localStorage.setItem(this.tokenStorageKey, JSON.stringify(token["jwt"]));
+      localStorage.setItem(this.tokenStorageKey, token["jwt"]);
       let loginUser: LoginUser = new LoginUser();
       let tokenObj = this.jwtHelper.decodeToken(this.getToken());
       loginUser.email = tokenObj["email"];
@@ -51,12 +51,12 @@ export class AuthService {
       this.currentUserSubject.next(loginUser);
 
 
-      if(this.isAdmin()){
+      if (this.isAdmin()) {
         window.location.href = '/news/add'
 
-      }else{
+      } else {
         window.location.href = '/'
-        }
+      }
 
     });
 
